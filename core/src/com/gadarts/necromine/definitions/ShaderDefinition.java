@@ -1,4 +1,4 @@
-package com.gadarts.isometric.utils.assets.definitions;
+package com.gadarts.necromine.definitions;
 
 public interface ShaderDefinition extends AssetDefinition {
 	String FOLDER = "shaders";

@@ -1,4 +1,4 @@
-package com.gadarts.isometric.utils.assets.definitions;
+package com.gadarts.necromine.definitions;
 
 public interface FontDefinition extends AssetDefinition {
 	String FOLDER = "fonts";

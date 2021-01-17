@@ -1,4 +1,4 @@
-package com.gadarts.isometric.utils.assets.definitions;
+package com.gadarts.necromine.definitions;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.gadarts.isometric.utils.assets.Assets;
