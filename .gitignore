@@ -1,0 +1,7 @@
+*.lock
+*.properties
+*.bin
+*.jar
+/.idea
+/gradlew
+/gradlew.bat
