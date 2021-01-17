@@ -1,7 +1,7 @@
 package com.gadarts.necromine.definitions;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.gadarts.isometric.utils.assets.Assets;
+import com.gadarts.necromine.Assets;
 
 public interface TextureDefinition extends AssetDefinition {
 	String TEXTURES_FOLDER = "textures";
