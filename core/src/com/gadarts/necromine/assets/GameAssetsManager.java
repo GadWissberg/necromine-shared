@@ -28,7 +28,14 @@ import java.util.Optional;
  * Assets loader and manager.
  */
 public class GameAssetsManager extends AssetManager {
+	private final String assetsLocation;
+
 	public GameAssetsManager() {
+		this("");
+	}
+
+	public GameAssetsManager(final String assetsLocation) {
+		this.assetsLocation = assetsLocation;
 		setLoader(String.class, new ShaderLoader(getFileHandleResolver()));
 		FileHandleResolver resolver = new InternalFileHandleResolver();
 		setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
@@ -43,7 +50,7 @@ public class GameAssetsManager extends AssetManager {
 		Arrays.stream(Assets.AssetsTypes.values())
 				.filter(type -> Arrays.stream(assetsTypesToExclude).noneMatch(toExclude -> toExclude == type))
 				.forEach(type -> Arrays.stream(type.getAssetDefinitions()).forEach(def -> {
-					String path = Gdx.files.getFileHandle(def.getFilePath(), FileType.Internal).path();
+					String path = Gdx.files.getFileHandle(assetsLocation + def.getFilePath(), FileType.Internal).path();
 					Class<?> typeClass = def.getTypeClass();
 					if (Optional.ofNullable(def.getParameters()).isPresent()) {
 						load(path, typeClass, def.getParameters());
