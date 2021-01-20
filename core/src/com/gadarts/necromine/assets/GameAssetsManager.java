@@ -70,32 +70,27 @@ public class GameAssetsManager extends AssetManager {
 		}
 	}
 
-	@Override
-	public synchronized <T> T get(String fileName, Class<T> type) {
-		return super.get(assetsLocation + fileName, type);
-	}
-
 	public TextureAtlas getAtlas(final AtlasDefinition atlas) {
-		return get(atlas.getFilePath(), TextureAtlas.class);
+		return get(assetsLocation + atlas.getFilePath(), TextureAtlas.class);
 	}
 
 	public Model getModel(final com.gadarts.necromine.definitions.ModelDefinition model) {
-		return get(model.getFilePath(), Model.class);
+		return get(assetsLocation + model.getFilePath(), Model.class);
 	}
 
 	public Texture getTexture(final TextureDefinition definition) {
-		return get(definition.getFilePath(), Texture.class);
+		return get(assetsLocation + definition.getFilePath(), Texture.class);
 	}
 
 	public Music getMelody(final Assets.Melody definition) {
-		return get(definition.getFilePath(), Music.class);
+		return get(assetsLocation + definition.getFilePath(), Music.class);
 	}
 
 	public Sound getSound(final Assets.Sounds sound) {
-		return get(sound.getFilePath(), Sound.class);
+		return get(assetsLocation + sound.getFilePath(), Sound.class);
 	}
 
 	public String getShader(final Assets.Shaders shaders) {
-		return get(shaders.getFilePath(), String.class);
+		return get(assetsLocation + shaders.getFilePath(), String.class);
 	}
 }
