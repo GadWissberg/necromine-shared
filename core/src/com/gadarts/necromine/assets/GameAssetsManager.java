@@ -59,7 +59,6 @@ public class GameAssetsManager extends AssetManager {
 					}
 				}));
 		finishLoading();
-
 	}
 
 	@Override
@@ -69,6 +68,11 @@ public class GameAssetsManager extends AssetManager {
 			Model model = (Model) asset;
 			model.materials.forEach(material -> material.remove(ColorAttribute.Specular));
 		}
+	}
+
+	@Override
+	public synchronized <T> T get(String fileName) {
+		return super.get(assetsLocation + fileName);
 	}
 
 	public TextureAtlas getAtlas(final AtlasDefinition atlas) {
