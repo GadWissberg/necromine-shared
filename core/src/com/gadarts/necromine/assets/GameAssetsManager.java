@@ -71,8 +71,8 @@ public class GameAssetsManager extends AssetManager {
 	}
 
 	@Override
-	public synchronized <T> T get(String fileName) {
-		return super.get(assetsLocation + fileName);
+	public synchronized <T> T get(String fileName, Class<T> type) {
+		return super.get(assetsLocation + fileName, type);
 	}
 
 	public TextureAtlas getAtlas(final AtlasDefinition atlas) {
