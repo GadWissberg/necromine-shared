@@ -16,6 +16,11 @@ public enum Enemies implements ElementDefinition {
 	}
 
 	@Override
+	public String toString() {
+		return getDisplayName();
+	}
+
+	@Override
 	public String getDisplayName() {
 		return displayName;
 	}
