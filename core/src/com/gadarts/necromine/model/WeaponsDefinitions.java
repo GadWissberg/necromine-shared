@@ -1,5 +1,6 @@
-package com.gadarts.necromine;
+package com.gadarts.necromine.model;
 
+import com.gadarts.necromine.assets.Assets;
 import lombok.AccessLevel;
 import lombok.Getter;
 

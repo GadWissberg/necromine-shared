@@ -1,4 +1,6 @@
-package com.gadarts.necromine;
+package com.gadarts.necromine.model;
+
+import com.gadarts.necromine.assets.Assets;
 
 public interface ItemDefinition {
 	int getWidth();

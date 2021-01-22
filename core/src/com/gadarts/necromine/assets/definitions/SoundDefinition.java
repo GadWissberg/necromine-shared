@@ -1,4 +1,4 @@
-package com.gadarts.necromine.definitions;
+package com.gadarts.necromine.assets.definitions;
 
 public interface SoundDefinition extends AssetDefinition {
 	String FOLDER = "sfx";

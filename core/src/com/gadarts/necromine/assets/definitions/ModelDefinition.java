@@ -1,4 +1,4 @@
-package com.gadarts.necromine.definitions;
+package com.gadarts.necromine.assets.definitions;
 
 public interface ModelDefinition extends AssetDefinition {
 	String FOLDER = "models";

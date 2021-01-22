@@ -1,4 +1,4 @@
-package com.gadarts.necromine;
+package com.gadarts.necromine.assets;
 
 import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.audio.Music;
@@ -8,7 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g3d.Model;
-import com.gadarts.necromine.definitions.*;
+import com.gadarts.necromine.assets.definitions.*;
+import com.gadarts.necromine.model.WeaponsDefinitions;
 import lombok.Getter;
 
 import java.util.ArrayList;
