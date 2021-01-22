@@ -14,4 +14,9 @@ public enum Enemies implements ElementDefinition {
 		this.displayName = displayName;
 		this.attackSound = attackSound;
 	}
+
+	@Override
+	public String getDisplayName() {
+		return displayName;
+	}
 }
