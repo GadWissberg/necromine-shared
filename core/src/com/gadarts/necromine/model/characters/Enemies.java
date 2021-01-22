@@ -1,4 +1,4 @@
-package com.gadarts.necromine.model;
+package com.gadarts.necromine.model.characters;
 
 import com.gadarts.necromine.assets.Assets;
 import lombok.Getter;
