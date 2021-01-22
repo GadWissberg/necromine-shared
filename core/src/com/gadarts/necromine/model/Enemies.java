@@ -4,7 +4,7 @@ import com.gadarts.necromine.assets.Assets;
 import lombok.Getter;
 
 @Getter
-public enum Enemies {
+public enum Enemies implements ElementDefinition {
 	ZEALOT("Zealot", Assets.Sounds.ATTACK_CLAW);
 
 	private final String displayName;

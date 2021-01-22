@@ -2,7 +2,7 @@ package com.gadarts.necromine.model;
 
 import com.gadarts.necromine.assets.Assets;
 
-public interface ItemDefinition {
+public interface ItemDefinition extends ElementDefinition {
 	int getWidth();
 
 	int[] getMask();
