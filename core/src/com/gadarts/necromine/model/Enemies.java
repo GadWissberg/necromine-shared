@@ -4,7 +4,7 @@ import com.gadarts.necromine.assets.Assets;
 import lombok.Getter;
 
 @Getter
-public enum Enemies implements ElementDefinition {
+public enum Enemies implements CharacterDefinition {
 	ZEALOT("Zealot", Assets.Sounds.ATTACK_CLAW);
 
 	private final String displayName;
@@ -23,5 +23,10 @@ public enum Enemies implements ElementDefinition {
 	@Override
 	public String getDisplayName() {
 		return displayName;
+	}
+
+	@Override
+	public CharacterTypes getCharacterType() {
+		return CharacterTypes.ENEMY;
 	}
 }
