@@ -5,14 +5,16 @@ import lombok.Getter;
 
 @Getter
 public enum Enemies implements CharacterDefinition {
-	ZEALOT("Zealot", Assets.Sounds.ATTACK_CLAW);
+	ZEALOT("Zealot", Assets.Sounds.ATTACK_CLAW, Assets.Atlases.ZEALOT);
 
 	private final String displayName;
 	private final Assets.Sounds attackSound;
+	private final Assets.Atlases atlasDefinition;
 
-	Enemies(final String displayName, final Assets.Sounds attackSound) {
+	Enemies(final String displayName, final Assets.Sounds attackSound, Assets.Atlases atlasDefinition) {
 		this.displayName = displayName;
 		this.attackSound = attackSound;
+		this.atlasDefinition = atlasDefinition;
 	}
 
 	@Override
@@ -28,5 +30,10 @@ public enum Enemies implements CharacterDefinition {
 	@Override
 	public CharacterTypes getCharacterType() {
 		return CharacterTypes.ENEMY;
+	}
+
+	@Override
+	public Assets.Atlases getAtlasDefinition() {
+		return atlasDefinition;
 	}
 }
