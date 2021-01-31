@@ -1,4 +1,4 @@
-package com.gadarts.necromine.model;
+package com.gadarts.necromine.model.pickups;
 
 import com.gadarts.necromine.assets.Assets;
 import lombok.AccessLevel;
@@ -18,11 +18,11 @@ public enum WeaponsDefinitions implements ItemDefinition {
 			1, 1,
 			1, 1,
 			1, 1,
-	}, true, "Hammer"),
+	}, true, "Hammer", Assets.Models.HAMMER),
 	COLT(2, 2, 2, Assets.UiTextures.WEAPON_COLT, Assets.Sounds.ATTACK_COLT, new int[]{
 			1, 1,
 			1, 0
-	}, "Colt M1911");
+	}, "Colt M1911", Assets.Models.COLT);
 
 	@Getter(AccessLevel.NONE)
 	private final int width;
@@ -40,16 +40,7 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	private final boolean melee;
 	private final int hitFrameIndex;
 	private final String displayName;
-
-	WeaponsDefinitions(final int width,
-					   final int height,
-					   final int hitFrameIndex,
-					   final Assets.UiTextures image,
-					   final Assets.Sounds attackSound,
-					   final int[] mask,
-					   final String displayName) {
-		this(width, height, hitFrameIndex, image, attackSound, mask, false, displayName);
-	}
+	private final Assets.Models modelDef;
 
 	WeaponsDefinitions(final int width,
 					   final int height,
@@ -58,7 +49,8 @@ public enum WeaponsDefinitions implements ItemDefinition {
 					   final Assets.Sounds attackSound,
 					   final int[] mask,
 					   final boolean melee,
-					   final String displayName) {
+					   final String displayName,
+					   final Assets.Models model) {
 		this.width = width;
 		this.height = height;
 		this.hitFrameIndex = hitFrameIndex;
@@ -67,6 +59,29 @@ public enum WeaponsDefinitions implements ItemDefinition {
 		this.mask = flipMatrixVertically(mask);
 		this.melee = melee;
 		this.displayName = displayName;
+		this.modelDef = model;
+	}
+
+	WeaponsDefinitions(final int width,
+					   final int depth,
+					   final int hitFrameIndex,
+					   final Assets.UiTextures image,
+					   final Assets.Sounds attackSound,
+					   final int[] mask,
+					   final boolean melee,
+					   final String displayName) {
+		this(width, depth, hitFrameIndex, image, attackSound, mask, melee, displayName, null);
+	}
+
+	WeaponsDefinitions(final int width,
+					   final int depth,
+					   final int hitFrameIndex,
+					   final Assets.UiTextures image,
+					   final Assets.Sounds attackSound,
+					   final int[] mask,
+					   final String displayName,
+					   final Assets.Models model) {
+		this(width, depth, hitFrameIndex, image, attackSound, mask, false, displayName, model);
 	}
 
 	private int[] flipMatrixVertically(final int[] mask) {
@@ -104,8 +119,14 @@ public enum WeaponsDefinitions implements ItemDefinition {
 		return image;
 	}
 
+
 	@Override
 	public String getDisplayName() {
 		return displayName;
+	}
+
+	@Override
+	public Assets.Models getModelDefinition() {
+		return modelDef;
 	}
 }

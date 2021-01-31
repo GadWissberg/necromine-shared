@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.gadarts.necromine.assets.definitions.*;
-import com.gadarts.necromine.model.WeaponsDefinitions;
+import com.gadarts.necromine.model.pickups.WeaponsDefinitions;
 import lombok.Getter;
 
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 
 @Getter
-public enum EnvironmentDefinitions implements ElementDefinition {
+public enum EnvironmentDefinitions implements ModelElementDefinition {
 	MINE_WALL_1(Assets.Models.WALL_1, 1, 4, "Mine Wall 4x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN),
 	MINE_WALL_2(Assets.Models.WALL_2, 1, 2, "Mine Wall 2x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN),
 	CAVE_SUPPORTER_1(Assets.Models.CAVE_SUPPORTER_1, 1, 1, "Mine Wall Supporter #1", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
@@ -17,7 +17,9 @@ public enum EnvironmentDefinitions implements ElementDefinition {
 	@Getter(AccessLevel.NONE)
 	private final Vector3 offset;
 
+	@Getter(AccessLevel.NONE)
 	private final Assets.Models model;
+
 	private final int width;
 	private final int height;
 	private final String displayName;
@@ -39,7 +41,8 @@ public enum EnvironmentDefinitions implements ElementDefinition {
 						   final int height,
 						   final String displayName,
 						   final boolean castShadow,
-						   final Vector3 offset, MapNodesTypes nodeType) {
+						   final Vector3 offset,
+						   final MapNodesTypes nodeType) {
 		this.model = model;
 		this.width = width;
 		this.height = height;
@@ -56,5 +59,10 @@ public enum EnvironmentDefinitions implements ElementDefinition {
 	@Override
 	public String getDisplayName() {
 		return displayName;
+	}
+
+	@Override
+	public Assets.Models getModelDefinition() {
+		return model;
 	}
 }

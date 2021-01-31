@@ -1,8 +1,9 @@
-package com.gadarts.necromine.model;
+package com.gadarts.necromine.model.pickups;
 
 import com.gadarts.necromine.assets.Assets;
+import com.gadarts.necromine.model.ModelElementDefinition;
 
-public interface ItemDefinition extends ElementDefinition {
+public interface ItemDefinition extends ModelElementDefinition {
 	int getWidth();
 
 	int[] getMask();
