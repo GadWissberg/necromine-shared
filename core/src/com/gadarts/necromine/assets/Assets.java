@@ -303,6 +303,7 @@ public final class Assets {
 	@Getter
 	public enum UiTextures implements TextureDefinition {
 		PATH_ARROW,
+		BULB,
 		BUTTON_STORAGE(null, "buttons"),
 		BUTTON_STORAGE_DOWN(null, "buttons"),
 		BUTTON_STORAGE_HOVER(null, "buttons"),
