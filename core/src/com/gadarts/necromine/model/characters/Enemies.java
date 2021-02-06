@@ -11,7 +11,7 @@ public enum Enemies implements CharacterDefinition {
 	private final Assets.Sounds attackSound;
 	private final Assets.Atlases atlasDefinition;
 
-	Enemies(final String displayName, final Assets.Sounds attackSound, Assets.Atlases atlasDefinition) {
+	Enemies(final String displayName, final Assets.Sounds attackSound, final Assets.Atlases atlasDefinition) {
 		this.displayName = displayName;
 		this.attackSound = attackSound;
 		this.atlasDefinition = atlasDefinition;

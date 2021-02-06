@@ -20,6 +20,11 @@ public class PlayerDefinition implements CharacterDefinition {
 	}
 
 	@Override
+	public int ordinal() {
+		return 0;
+	}
+
+	@Override
 	public Assets.Atlases getAtlasDefinition() {
 		return Assets.Atlases.PLAYER_AXE_PICK;
 	}
