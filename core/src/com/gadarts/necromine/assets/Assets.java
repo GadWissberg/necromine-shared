@@ -75,6 +75,7 @@ public final class Assets {
 					result = atlas;
 					break;
 				}
+
 			}
 			return result;
 		}
