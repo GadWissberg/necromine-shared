@@ -39,7 +39,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 						   final Vector3 offset,
 						   final MapNodesTypes nodeType,
 						   final boolean isWall) {
-		this(model, width, height, displayName, false, offset, nodeType, isWall);
+		this(model, width, height, displayName, true, offset, nodeType, isWall);
 	}
 
 	EnvironmentDefinitions(final Assets.Models model,
