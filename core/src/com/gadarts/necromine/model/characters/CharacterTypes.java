@@ -10,7 +10,7 @@ public enum CharacterTypes {
 	public static final float BILLBOARD_Y = 0.7f;
 	private final CharacterDefinition[] definitions;
 
-	CharacterTypes(CharacterDefinition[] definitions) {
+	CharacterTypes(final CharacterDefinition[] definitions) {
 		this.definitions = definitions;
 	}
 }

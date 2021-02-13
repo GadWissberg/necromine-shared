@@ -10,6 +10,9 @@ import lombok.Getter;
 import static com.gadarts.necromine.model.characters.Direction.EAST;
 import static com.gadarts.necromine.model.characters.Direction.NORTH;
 
+/**
+ * Definitions of misc objects.
+ */
 @Getter
 public enum EnvironmentDefinitions implements ModelElementDefinition {
 	MINE_WALL_1(Assets.Models.WALL_1, 1, 4, "Mine Wall 4x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN, true),
@@ -26,7 +29,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	private final Assets.Models model;
 
 	private final int width;
-	private final int height;
+	private final int depth;
 	private final String displayName;
 	private final boolean castShadow;
 	private final MapNodesTypes nodeType;
@@ -34,27 +37,27 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 
 	EnvironmentDefinitions(final Assets.Models model,
 						   final int width,
-						   final int height,
+						   final int depth,
 						   final String displayName,
 						   final Vector3 offset,
 						   final MapNodesTypes nodeType,
 						   final boolean isWall) {
-		this(model, width, height, displayName, true, offset, nodeType, isWall);
+		this(model, width, depth, displayName, true, offset, nodeType, isWall);
 	}
 
 	EnvironmentDefinitions(final Assets.Models model,
 						   final int width,
-						   final int height,
+						   final int depth,
 						   final String displayName,
 						   final boolean castShadow,
 						   final Vector3 offset,
 						   final MapNodesTypes nodeType) {
-		this(model, width, height, displayName, castShadow, offset, nodeType, false);
+		this(model, width, depth, displayName, castShadow, offset, nodeType, false);
 	}
 
 	EnvironmentDefinitions(final Assets.Models model,
 						   final int width,
-						   final int height,
+						   final int depth,
 						   final String displayName,
 						   final boolean castShadow,
 						   final Vector3 offset,
@@ -62,7 +65,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 						   final boolean isWall) {
 		this.model = model;
 		this.width = width;
-		this.height = height;
+		this.depth = depth;
 		this.displayName = displayName;
 		this.castShadow = castShadow;
 		this.offset = offset;
@@ -84,6 +87,13 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 		return model;
 	}
 
+	/**
+	 * When objects have even width or depth, this method will correct their position.
+	 *
+	 * @param definition      The definition of the misc object.
+	 * @param modelInstance   The model of the misc object.
+	 * @param facingDirection The facing direction of the misc object.
+	 */
 	public static void handleEvenSize(final EnvironmentDefinitions definition,
 									  final ModelInstance modelInstance,
 									  final Direction facingDirection) {
@@ -91,7 +101,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 		if (definition.getWidth() % 2 == 0) {
 			modelInstance.transform.translate(0.5f * (handleEvenSize ? -1 : 1), 0, 0);
 		}
-		if (definition.getHeight() % 2 == 0) {
+		if (definition.getDepth() % 2 == 0) {
 			modelInstance.transform.translate(0, 0, 0.5f * (handleEvenSize ? -1 : 1));
 		}
 	}

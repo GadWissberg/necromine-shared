@@ -15,7 +15,7 @@ public class CharacterUtils {
 	private final static Vector3 auxVector3_1 = new Vector3();
 	private final static Plane auxPlane = new Plane();
 
-	public static Direction calculateDirectionSeenFromCamera(Camera camera, Direction facingDirection) {
+	public static Direction calculateDirectionSeenFromCamera(final Camera camera, final Direction facingDirection) {
 		auxVector2_3.set(1, 0);
 		float playerAngle = facingDirection.getDirection(auxVector2_1).angleDeg();
 		Ray ray = camera.getPickRay(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
