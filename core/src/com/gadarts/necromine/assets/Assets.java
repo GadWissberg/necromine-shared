@@ -146,16 +146,17 @@ public final class Assets {
 	 */
 	@Getter
 	public enum Fonts implements FontDefinition {
-		CONSOLA(new FreetypeFontLoader.FreeTypeFontLoaderParameter());
+		CONSOLA(15),
+		EXORCISTA(36);
 
 		private final String filePath;
-		private final AssetLoaderParameters<BitmapFont> params;
+		private final FreetypeFontLoader.FreeTypeFontLoaderParameter params;
 
-		Fonts(final FreetypeFontLoader.FreeTypeFontLoaderParameter freeTypeFontLoaderParameter) {
+		Fonts(final int size) {
+			this.params = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
 			this.filePath = FontDefinition.FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FontDefinition.FORMAT;
-			freeTypeFontLoaderParameter.fontParameters.size = 15;
-			freeTypeFontLoaderParameter.fontFileName = filePath;
-			this.params = freeTypeFontLoaderParameter;
+			params.fontParameters.size = size;
+			params.fontFileName = filePath;
 		}
 
 		@Override
