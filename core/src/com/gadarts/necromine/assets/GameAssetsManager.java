@@ -49,10 +49,12 @@ public class GameAssetsManager extends AssetManager {
 		Arrays.stream(Assets.AssetsTypes.values())
 				.filter(type -> Arrays.stream(assetsTypesToExclude).noneMatch(toExclude -> toExclude == type))
 				.forEach(type -> Arrays.stream(type.getAssetDefinitions()).forEach(def -> {
-					String path = Gdx.files.getFileHandle(assetsLocation + def.getFilePath(), FileType.Internal).path();
+					String filePath = assetsLocation + def.getFilePath();
+					String path = Gdx.files.getFileHandle(filePath, FileType.Internal).path();
 					Class<?> typeClass = def.getTypeClass();
 					if (Optional.ofNullable(def.getParameters()).isPresent()) {
-						load(path, typeClass, def.getParameters());
+						String assetManagerKey = def.getAssetManagerKey();
+						load(assetManagerKey != null ? assetManagerKey : path, typeClass, def.getParameters());
 					} else {
 						load(path, typeClass);
 					}

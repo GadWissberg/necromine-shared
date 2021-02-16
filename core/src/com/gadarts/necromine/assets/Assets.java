@@ -3,6 +3,7 @@ package com.gadarts.necromine.assets;
 import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -147,16 +148,37 @@ public final class Assets {
 	@Getter
 	public enum Fonts implements FontDefinition {
 		CONSOLA(15),
-		EXORCISTA(36);
+		CHUBGOTHIC_SMALL("chubgothic", 48, true),
+		CHUBGOTHIC_LARGE("chubgothic", 72, true);
 
 		private final String filePath;
 		private final FreetypeFontLoader.FreeTypeFontLoaderParameter params;
+		private final String filename;
 
 		Fonts(final int size) {
-			this.params = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
-			this.filePath = FontDefinition.FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FontDefinition.FORMAT;
+			this(null, size, false);
+		}
+
+		Fonts(final String filename, final int size, final boolean outline) {
+			params = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+			this.filename = filename != null ? filename : name().toLowerCase();
+			String name = filename == null ? name().toLowerCase() : filename;
+			filePath = FontDefinition.FOLDER + PATH_SEPARATOR + name + "." + FontDefinition.FORMAT;
+			defineParams(size, outline);
+		}
+
+		private void defineParams(final int size, final boolean outline) {
 			params.fontParameters.size = size;
 			params.fontFileName = filePath;
+			if (outline) {
+				params.fontParameters.borderWidth = 1f;
+				params.fontParameters.borderColor = new Color(0.5f, 0.1f, 0.1f, 1.0f);
+			}
+		}
+
+		@Override
+		public String getAssetManagerKey() {
+			return filename + "_" + params.fontParameters.size + "." + FontDefinition.FORMAT;
 		}
 
 		@Override

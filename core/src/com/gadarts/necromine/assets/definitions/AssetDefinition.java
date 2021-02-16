@@ -7,5 +7,9 @@ public interface AssetDefinition {
 
 	AssetLoaderParameters getParameters();
 
+	default String getAssetManagerKey() {
+		return null;
+	}
+
 	Class<?> getTypeClass();
 }
