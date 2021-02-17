@@ -148,7 +148,7 @@ public final class Assets {
 	@Getter
 	public enum Fonts implements FontDefinition {
 		CONSOLA(15),
-		CHUBGOTHIC_SMALL("chubgothic", 48, true),
+		CHUBGOTHIC_SMALL("chubgothic", 40, true),
 		CHUBGOTHIC_LARGE("chubgothic", 72, true);
 
 		private final String filePath;
