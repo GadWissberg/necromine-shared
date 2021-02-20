@@ -8,7 +8,6 @@ buildscript {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         jcenter()
         google()
-        maven { url 'https://jitpack.io' }
     }
     dependencies {
 
@@ -17,7 +16,8 @@ buildscript {
 }
 
 allprojects {
-
+    apply plugin: "maven"
+    group = "com.gadarts.necromine.shared"
     version = '0.1'
     ext {
         versionNumber = 1
