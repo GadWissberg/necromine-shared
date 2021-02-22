@@ -248,20 +248,21 @@ public final class Assets {
 		COLT,
 		HAMMER,
 		PILLAR,
-		CAVE_SUPPORTER_1(false),
-		CAVE_SUPPORTER_2(false),
-		CAVE_SUPPORTER_3(false);
+		CAVE_SUPPORTER_1(),
+		CAVE_SUPPORTER_2(),
+		CAVE_SUPPORTER_3(),
+		CURSOR(0.1F);
 
 		private final String filePath;
-		private final boolean castShadow;
+		private final float alpha;
 
 		Models() {
-			this(true);
+			this(1.0f);
 		}
 
-		Models(final boolean castShadow) {
-			this.castShadow = castShadow;
-			filePath = ModelDefinition.FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + ModelDefinition.FORMAT;
+		Models(final float alpha) {
+			this.filePath = ModelDefinition.FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + ModelDefinition.FORMAT;
+			this.alpha = alpha;
 		}
 
 		@Override
