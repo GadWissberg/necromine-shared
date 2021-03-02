@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.utils.Array;
 import com.gadarts.necromine.assets.definitions.AtlasDefinition;
 import com.gadarts.necromine.assets.definitions.FontDefinition;
 import com.gadarts.necromine.assets.definitions.TextureDefinition;
@@ -60,6 +61,15 @@ public class GameAssetsManager extends AssetManager {
 					}
 				}));
 		finishLoading();
+	}
+
+	/**
+	 * Sets repeat value wrap for all loaded textures.
+	 */
+	public void applyRepeatWrapOnAllTextures() {
+		Array<Texture> textures = new Array<>();
+		getAll(Texture.class, textures);
+		textures.forEach(texture -> texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat));
 	}
 
 	@Override
