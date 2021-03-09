@@ -12,6 +12,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+import static com.badlogic.gdx.math.Matrix4.M13;
+
 @Getter
 @Setter
 public class MapNodeData {
@@ -62,6 +64,13 @@ public class MapNodeData {
 		height += delta;
 		if (modelInstance != null) {
 			modelInstance.transform.translate(0, delta, 0);
+		}
+	}
+
+	public void applyHeight(final float fixed) {
+		height = fixed;
+		if (modelInstance != null) {
+			modelInstance.transform.val[M13] = fixed;
 		}
 	}
 
