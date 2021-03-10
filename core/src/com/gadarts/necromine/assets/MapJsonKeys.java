@@ -17,4 +17,5 @@ public final class MapJsonKeys {
 	public static final String WEST = "west";
 	public static final String NORTH = "north";
 	public static final String HEIGHTS = "heights";
+	public static final String AMBIENT = "ambient";
 }
