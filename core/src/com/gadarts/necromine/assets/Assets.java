@@ -301,10 +301,13 @@ public final class Assets {
 	 * Image files of floors.
 	 */
 	public enum FloorsTextures implements TextureDefinition {
-		FLOOR_0,
+		FLOOR_PAVEMENT_0,
 		FLOOR_1,
 		FLOOR_2,
-		FLOOR_3;
+		FLOOR_3,
+		WALL_BRICK_1,
+		WALL_BRICK_2,
+		WALL_BRICK_3;
 
 		@Override
 		public String getSubFolderName() {
