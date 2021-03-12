@@ -36,7 +36,6 @@ public class WallCreator implements Disposable {
 		Wall westWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = westWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow());
-		modelInstance.transform.rotate(Vector3.Z, 90);
 		return westWall;
 	}
 
@@ -58,7 +57,6 @@ public class WallCreator implements Disposable {
 		Wall eastWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = eastWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol() + 1F, 0, n.getRow());
-		modelInstance.transform.rotate(Vector3.Z, -90);
 		return eastWall;
 	}
 
@@ -97,8 +95,15 @@ public class WallCreator implements Disposable {
 		Wall wallBetween = Optional.ofNullable(eastNode.getWestWall()).orElse(westNode.getEastWall());
 		ModelInstance modelInstance = wallBetween.getModelInstance();
 		TextureAttribute textureAttribute = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
-		textureAttribute.scaleU = adjustWallBetweenTwoNodes(eastNode, westNode, wallBetween);
-		modelInstance.transform.rotate(Vector3.Z, (eastNode.getHeight() > westNode.getHeight() ? 1 : -1) * 90F);
+		textureAttribute.scaleV = adjustWallBetweenTwoNodes(eastNode, westNode, wallBetween);
+		boolean eastHigherThanWest = eastNode.getHeight() > westNode.getHeight();
+		modelInstance.transform.rotate(Vector3.Y, (eastHigherThanWest ? -1 : 1) * 90F);
+		modelInstance.transform.rotate(Vector3.X, 90F);
+		if (eastHigherThanWest) {
+			modelInstance.transform.translate(0F, 0F, -1F);
+		} else {
+			modelInstance.transform.translate(-1F, 0F, 0F);
+		}
 	}
 
 	public static float adjustWallBetweenTwoNodes(final MapNodeData eastOrSouthNode,
