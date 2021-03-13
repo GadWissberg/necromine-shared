@@ -133,6 +133,7 @@ public class WallCreator implements Disposable {
 
 	public void adjustNorthWall(final MapNodeData southernNode,
 								final MapNodeData northernNode) {
+		if (northernNode.getHeight() == southernNode.getHeight()) return;
 		if (northernNode.getSouthWall() == null && southernNode.getNorthWall() == null) {
 			southernNode.setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, Assets.FloorsTextures.FLOOR_PAVEMENT_0));
 		}
@@ -141,6 +142,7 @@ public class WallCreator implements Disposable {
 
 	public void adjustSouthWall(final MapNodeData northernNode,
 								final MapNodeData southernNode) {
+		if (northernNode.getHeight() == southernNode.getHeight()) return;
 		if (southernNode.getNorthWall() == null && northernNode.getSouthWall() == null) {
 			northernNode.setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, Assets.FloorsTextures.FLOOR_PAVEMENT_0));
 		}
@@ -149,6 +151,7 @@ public class WallCreator implements Disposable {
 
 	public void adjustEastWall(final MapNodeData westernNode,
 							   final MapNodeData easternNode) {
+		if (easternNode.getHeight() == westernNode.getHeight()) return;
 		if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
 			westernNode.setEastWall(createEastWall(westernNode, wallModel, assetsManager, Assets.FloorsTextures.FLOOR_PAVEMENT_0));
 		}
@@ -156,6 +159,7 @@ public class WallCreator implements Disposable {
 	}
 
 	public void adjustWestWall(final MapNodeData easternNode, final MapNodeData westernNode) {
+		if (easternNode.getHeight() == westernNode.getHeight()) return;
 		if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
 			easternNode.setWestWall(createWestWall(easternNode, wallModel, assetsManager, Assets.FloorsTextures.FLOOR_PAVEMENT_0));
 		}
