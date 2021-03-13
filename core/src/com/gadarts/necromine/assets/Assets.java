@@ -305,6 +305,9 @@ public final class Assets {
 		FLOOR_1,
 		FLOOR_2,
 		FLOOR_3,
+		FLOOR_ROAD_0,
+		FLOOR_ROAD_MARK_LEFT,
+		FLOOR_ROAD_MARK_UP,
 		WALL_BRICK_1,
 		WALL_BRICK_2,
 		WALL_BRICK_3;
