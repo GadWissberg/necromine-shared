@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
-import com.gadarts.necromine.assets.Assets;
+import com.gadarts.necromine.assets.Assets.FloorsTextures;
 import com.gadarts.necromine.assets.GameAssetsManager;
 import com.gadarts.necromine.model.MapNodeData;
 import com.gadarts.necromine.model.Wall;
@@ -32,7 +32,7 @@ public class WallCreator implements Disposable {
 	public static Wall createWestWall(final MapNodeData n,
 									  final Model wallModel,
 									  final GameAssetsManager assetsManager,
-									  final Assets.FloorsTextures definition) {
+									  final FloorsTextures definition) {
 		Wall westWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = westWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow());
@@ -42,7 +42,7 @@ public class WallCreator implements Disposable {
 	public static Wall createSouthWall(final MapNodeData n,
 									   final Model wallModel,
 									   final GameAssetsManager assetsManager,
-									   final Assets.FloorsTextures definition) {
+									   final FloorsTextures definition) {
 		Wall southWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = southWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow() + 1);
@@ -53,7 +53,7 @@ public class WallCreator implements Disposable {
 	public static Wall createEastWall(final MapNodeData n,
 									  final Model wallModel,
 									  final GameAssetsManager assetsManager,
-									  final Assets.FloorsTextures definition) {
+									  final FloorsTextures definition) {
 		Wall eastWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = eastWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol() + 1F, 0, n.getRow());
@@ -63,7 +63,7 @@ public class WallCreator implements Disposable {
 	public static Wall createNorthWall(final MapNodeData n,
 									   final Model wallModel,
 									   final GameAssetsManager assetsManager,
-									   final Assets.FloorsTextures definition) {
+									   final FloorsTextures definition) {
 		Wall northWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = northWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow());
@@ -73,11 +73,11 @@ public class WallCreator implements Disposable {
 
 	public static Wall createWall(final Model wallModel,
 								  final GameAssetsManager assetsManager,
-								  final Assets.FloorsTextures definition) {
+								  final FloorsTextures definition) {
 		ModelInstance modelInstance = new ModelInstance(wallModel);
 		TextureAttribute textureAttribute = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
 		textureAttribute.textureDescription.texture = assetsManager.getTexture(definition);
-		return new Wall(modelInstance, Assets.FloorsTextures.FLOOR_PAVEMENT_0);
+		return new Wall(modelInstance, FloorsTextures.FLOOR_PAVEMENT_0);
 	}
 
 	public static void adjustWallBetweenNorthAndSouth(final MapNodeData southernNode,
@@ -91,7 +91,8 @@ public class WallCreator implements Disposable {
 	}
 
 	public static void adjustWallBetweenEastAndWest(final MapNodeData eastNode,
-													final MapNodeData westNode) {
+													final MapNodeData westNode,
+													final boolean hasJustBeenCreated) {
 		Wall wallBetween = Optional.ofNullable(eastNode.getWestWall()).orElse(westNode.getEastWall());
 		ModelInstance modelInstance = wallBetween.getModelInstance();
 		TextureAttribute textureAttribute = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
@@ -99,10 +100,12 @@ public class WallCreator implements Disposable {
 		boolean eastHigherThanWest = eastNode.getHeight() > westNode.getHeight();
 		modelInstance.transform.rotate(Vector3.Y, (eastHigherThanWest ? -1 : 1) * 90F);
 		modelInstance.transform.rotate(Vector3.X, 90F);
-		if (eastHigherThanWest) {
-			modelInstance.transform.translate(0F, 0F, -1F);
-		} else {
-			modelInstance.transform.translate(-1F, 0F, 0F);
+		if (hasJustBeenCreated) {
+			if (eastHigherThanWest) {
+				modelInstance.transform.translate(0F, 0F, -1F);
+			} else {
+				modelInstance.transform.translate(-1F, 0F, 0F);
+			}
 		}
 	}
 
@@ -135,7 +138,7 @@ public class WallCreator implements Disposable {
 								final MapNodeData northernNode) {
 		if (northernNode.getHeight() == southernNode.getHeight()) return;
 		if (northernNode.getSouthWall() == null && southernNode.getNorthWall() == null) {
-			southernNode.setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, Assets.FloorsTextures.FLOOR_PAVEMENT_0));
+			southernNode.setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, FloorsTextures.FLOOR_PAVEMENT_0));
 		}
 		adjustWallBetweenNorthAndSouth(southernNode, northernNode);
 	}
@@ -144,7 +147,7 @@ public class WallCreator implements Disposable {
 								final MapNodeData southernNode) {
 		if (northernNode.getHeight() == southernNode.getHeight()) return;
 		if (southernNode.getNorthWall() == null && northernNode.getSouthWall() == null) {
-			northernNode.setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, Assets.FloorsTextures.FLOOR_PAVEMENT_0));
+			northernNode.setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, FloorsTextures.FLOOR_PAVEMENT_0));
 		}
 		adjustWallBetweenNorthAndSouth(southernNode, northernNode);
 	}
@@ -152,18 +155,22 @@ public class WallCreator implements Disposable {
 	public void adjustEastWall(final MapNodeData westernNode,
 							   final MapNodeData easternNode) {
 		if (easternNode.getHeight() == westernNode.getHeight()) return;
+		boolean hasJustBeenCreated = false;
 		if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
-			westernNode.setEastWall(createEastWall(westernNode, wallModel, assetsManager, Assets.FloorsTextures.FLOOR_PAVEMENT_0));
+			westernNode.setEastWall(createEastWall(westernNode, wallModel, assetsManager, FloorsTextures.FLOOR_PAVEMENT_0));
+			hasJustBeenCreated = true;
 		}
-		adjustWallBetweenEastAndWest(easternNode, westernNode);
+		adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated);
 	}
 
 	public void adjustWestWall(final MapNodeData easternNode, final MapNodeData westernNode) {
 		if (easternNode.getHeight() == westernNode.getHeight()) return;
+		boolean hasJustBeenCreated = false;
 		if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
-			easternNode.setWestWall(createWestWall(easternNode, wallModel, assetsManager, Assets.FloorsTextures.FLOOR_PAVEMENT_0));
+			easternNode.setWestWall(createWestWall(easternNode, wallModel, assetsManager, FloorsTextures.FLOOR_PAVEMENT_0));
+			hasJustBeenCreated = true;
 		}
-		adjustWallBetweenEastAndWest(easternNode, westernNode);
+		adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated);
 	}
 
 	@Override
