@@ -77,7 +77,7 @@ public class WallCreator implements Disposable {
 		ModelInstance modelInstance = new ModelInstance(wallModel);
 		TextureAttribute textureAttribute = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
 		textureAttribute.textureDescription.texture = assetsManager.getTexture(definition);
-		return new Wall(modelInstance, FloorsTextures.FLOOR_PAVEMENT_0);
+		return new Wall(modelInstance, definition);
 	}
 
 	public static void adjustWallBetweenNorthAndSouth(final MapNodeData southernNode,
