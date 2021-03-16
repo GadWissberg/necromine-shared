@@ -300,17 +300,34 @@ public final class Assets {
 	/**
 	 * Image files of floors.
 	 */
+	@Getter
 	public enum FloorsTextures implements TextureDefinition {
 		FLOOR_PAVEMENT_0,
 		FLOOR_1,
 		FLOOR_2,
 		FLOOR_3,
 		FLOOR_ROAD_0,
-		FLOOR_ROAD_MARK_LEFT,
-		FLOOR_ROAD_MARK_UP,
+		FLOOR_ROAD_MARK_EAST,
+		FLOOR_ROAD_MARK_SOUTH,
+		FLOOR_ROAD_MARK_WEST,
+		FLOOR_ROAD_MARK_NORTH,
+		FLOOR_ROAD_MARK_NORTH_EAST(Texture.TextureWrap.ClampToEdge),
+		FLOOR_ROAD_MARK_NORTH_WEST(Texture.TextureWrap.ClampToEdge),
+		FLOOR_ROAD_MARK_SOUTH_EAST(Texture.TextureWrap.ClampToEdge),
+		FLOOR_ROAD_MARK_SOUTH_WEST(Texture.TextureWrap.ClampToEdge),
 		WALL_BRICK_1,
 		WALL_BRICK_2,
 		WALL_BRICK_3;
+
+		private final Texture.TextureWrap textureWrap;
+
+		FloorsTextures(Texture.TextureWrap textureWrap) {
+			this.textureWrap = textureWrap;
+		}
+
+		FloorsTextures() {
+			this(Texture.TextureWrap.Repeat);
+		}
 
 		@Override
 		public String getSubFolderName() {

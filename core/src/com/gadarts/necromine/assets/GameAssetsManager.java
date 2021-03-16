@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -69,7 +70,11 @@ public class GameAssetsManager extends AssetManager {
 	public void applyRepeatWrapOnAllTextures() {
 		Array<Texture> textures = new Array<>();
 		getAll(Texture.class, textures);
-		textures.forEach(texture -> texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat));
+		textures.forEach(texture -> texture.setWrap(TextureWrap.Repeat, TextureWrap.Repeat));
+		Arrays.stream(Assets.FloorsTextures.values())
+				.filter(texture -> texture.getTextureWrap().equals(TextureWrap.ClampToEdge))
+				.forEach(t -> get(t.getFilePath(), Texture.class)
+						.setWrap(TextureWrap.ClampToEdge, TextureWrap.ClampToEdge));
 	}
 
 	@Override
