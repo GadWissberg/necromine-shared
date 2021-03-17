@@ -251,7 +251,8 @@ public final class Assets {
 		CAVE_SUPPORTER_1(),
 		CAVE_SUPPORTER_2(),
 		CAVE_SUPPORTER_3(),
-		CURSOR(0.1F);
+		CURSOR(0.1F),
+		STREET_LAMP;
 
 		private final String filePath;
 		private final float alpha;
@@ -307,6 +308,8 @@ public final class Assets {
 		FLOOR_2,
 		FLOOR_3,
 		FLOOR_ROAD_0,
+		FLOOR_ROAD_1,
+		FLOOR_ROAD_2,
 		FLOOR_ROAD_MARK_EAST,
 		FLOOR_ROAD_MARK_SOUTH,
 		FLOOR_ROAD_MARK_WEST,
@@ -315,6 +318,8 @@ public final class Assets {
 		FLOOR_ROAD_MARK_NORTH_WEST(Texture.TextureWrap.ClampToEdge),
 		FLOOR_ROAD_MARK_SOUTH_EAST(Texture.TextureWrap.ClampToEdge),
 		FLOOR_ROAD_MARK_SOUTH_WEST(Texture.TextureWrap.ClampToEdge),
+		FLOOR_ROAD_MARK_HORIZONTAL,
+		FLOOR_ROAD_MARK_VERTICAL,
 		WALL_BRICK_1,
 		WALL_BRICK_2,
 		WALL_BRICK_3;
