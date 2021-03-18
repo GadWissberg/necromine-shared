@@ -74,6 +74,10 @@ public class MapNodeData {
 		}
 	}
 
+	public boolean equals(final int row, final int col) {
+		return this.row == row && this.col == col;
+	}
+
 	public float getHeight() {
 		return height;
 	}

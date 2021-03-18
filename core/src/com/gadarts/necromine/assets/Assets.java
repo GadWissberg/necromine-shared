@@ -252,7 +252,7 @@ public final class Assets {
         CAVE_SUPPORTER_2(),
         CAVE_SUPPORTER_3(),
         CURSOR(0.1F),
-        STREET_LAMP("#E0E700");
+        STREET_LAMP("#FFFFFF");
 
         private final String filePath;
         private final float alpha;
