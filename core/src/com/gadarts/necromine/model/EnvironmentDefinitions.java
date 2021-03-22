@@ -23,6 +23,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	PILLAR(Assets.Models.PILLAR, 1, 1, "Pillar", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	STREET_LAMP(Assets.Models.STREET_LAMP, 1, 1, "Street Lamp", true, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, new LightEmission(new Vector3(0, 2, 0), 1f, 3f)),
 	STREET_DOOR(Assets.Models.STREET_DOOR, 1, 1, "Street Door", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true),
+	STREET_SIGN(Assets.Models.STREET_SIGN, 1, 1, "Easy St.", true, Vector3.Zero, MapNodesTypes.PASSABLE_NODE),
 	CAR(Assets.Models.CAR, 4, 1, "Car", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED);
 
 	@Getter(AccessLevel.NONE)

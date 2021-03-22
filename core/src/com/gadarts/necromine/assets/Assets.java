@@ -254,6 +254,7 @@ public final class Assets {
 		CURSOR(0.1F),
 		STREET_LAMP("#FFFFFF"),
 		STREET_DOOR,
+		STREET_SIGN,
 		CAR;
 
 		private final String filePath;
