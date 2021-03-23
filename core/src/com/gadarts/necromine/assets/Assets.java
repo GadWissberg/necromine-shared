@@ -255,7 +255,10 @@ public final class Assets {
 		STREET_LAMP("#FFFFFF"),
 		STREET_DOOR,
 		STREET_SIGN,
-		CAR;
+		CAR,
+		FIRE_HYDRANT,
+		SIGN,
+		FENCE;
 
 		private final String filePath;
 		private final float alpha;
