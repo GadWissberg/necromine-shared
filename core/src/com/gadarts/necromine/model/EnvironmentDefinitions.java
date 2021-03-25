@@ -27,7 +27,8 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	CAR(Assets.Models.CAR, 4, 1, "Car", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	FIRE_HYDRANT(Assets.Models.FIRE_HYDRANT, 1, 1, "Fire Hydrant", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	SIGN(Assets.Models.SIGN, 1, 1, "Syphilis", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	FENCE(Assets.Models.FENCE, 1, 1, "Fence", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED);
+	FENCE(Assets.Models.FENCE, 1, 1, "Fence", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
+	WINDOW(Assets.Models.WINDOW, 1, 1, "Window", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true);
 
 	@Getter(AccessLevel.NONE)
 	private final Vector3 offset;
@@ -65,7 +66,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 						   final boolean renderWhenFrontOnly) {
 		this(model, width, depth, displayName, castShadow, offset, nodeType, false, null, renderWhenFrontOnly);
 	}
-	
+
 	EnvironmentDefinitions(final Assets.Models model,
 						   final int width,
 						   final int depth,
