@@ -259,7 +259,7 @@ public final class Assets {
 		FIRE_HYDRANT,
 		SIGN,
 		FENCE,
-		WINDOW("#FFF50C");
+		WINDOW("#E4E000");
 
 		private final String filePath;
 		private final float alpha;
