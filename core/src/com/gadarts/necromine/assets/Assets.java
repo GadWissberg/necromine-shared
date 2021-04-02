@@ -213,18 +213,25 @@ public final class Assets {
 		PLAYER_DEATH,
 		UI_CLICK(false),
 		UI_ITEM_SELECT(false),
-		UI_ITEM_PLACED(false);
+		UI_ITEM_PLACED(false),
+		AMB_WIND(false, true);
 
 		private final String filePath;
 		private final boolean randomPitch;
+		private final boolean loop;
 
 		Sounds() {
 			this(true);
 		}
 
 		Sounds(final boolean randomPitch) {
+			this(randomPitch, false);
+		}
+
+		Sounds(final boolean randomPitch, final boolean loop) {
 			this.filePath = SoundDefinition.FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + SoundDefinition.FORMAT;
 			this.randomPitch = randomPitch;
+			this.loop = loop;
 		}
 
 		@Override
