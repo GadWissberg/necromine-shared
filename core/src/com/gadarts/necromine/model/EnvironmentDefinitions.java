@@ -28,7 +28,8 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	FIRE_HYDRANT(Assets.Models.FIRE_HYDRANT, 1, 1, "Fire Hydrant", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	SIGN(Assets.Models.SIGN, 1, 1, "Syphilis", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	FENCE(Assets.Models.FENCE, 1, 1, "Fence", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	WINDOW(Assets.Models.WINDOW, 1, 1, "Window", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true);
+	WINDOW(Assets.Models.WINDOW, 1, 1, "Window", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true),
+	MINE_WALL_3(Assets.Models.CAVE_WALL_SINGLE, 1, 1, "Mine Wall 1x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN, true, true);
 
 	@Getter(AccessLevel.NONE)
 	private final Vector3 offset;

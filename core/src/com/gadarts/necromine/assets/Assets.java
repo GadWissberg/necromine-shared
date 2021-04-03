@@ -266,7 +266,8 @@ public final class Assets {
 		FIRE_HYDRANT,
 		SIGN,
 		FENCE,
-		WINDOW("#E4E000");
+		WINDOW("#E4E000"),
+		CAVE_WALL_SINGLE;
 
 		private final String filePath;
 		private final float alpha;
