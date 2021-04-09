@@ -388,7 +388,8 @@ public final class Assets {
 		WEAPON_AXE_PICK(null, "weapons"),
 		WEAPON_HAMMER(null, "weapons"),
 		WEAPON_COLT(null, "weapons"),
-		PLAYER_LAYOUT;
+		PLAYER_LAYOUT,
+		SKILL_FLOWER_CENTER(null, "skill_flower");
 
 		public static final String SUB_FOLDER_NAME = "ui";
 		private final String specialFileName;
