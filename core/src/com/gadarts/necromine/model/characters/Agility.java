@@ -1,0 +1,14 @@
+package com.gadarts.necromine.model.characters;
+
+import lombok.Getter;
+
+@Getter
+public enum Agility {
+	LOW(3), MED(5), HIGH(7);
+
+	private final int value;
+
+	Agility(int value) {
+		this.value = value;
+	}
+}

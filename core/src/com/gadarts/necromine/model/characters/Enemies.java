@@ -1,20 +1,25 @@
 package com.gadarts.necromine.model.characters;
 
 import com.gadarts.necromine.assets.Assets;
+import com.gadarts.necromine.assets.Assets.Atlases;
 import lombok.Getter;
+
+import static com.gadarts.necromine.model.characters.Agility.*;
 
 @Getter
 public enum Enemies implements CharacterDefinition {
-	ZEALOT("Zealot", Assets.Sounds.ATTACK_CLAW, Assets.Atlases.ZEALOT);
+	ZEALOT("Zealot", Assets.Sounds.ATTACK_CLAW, Atlases.ZEALOT, new Agility[]{LOW, MED, MED, HIGH, HIGH});
 
 	private final String displayName;
 	private final Assets.Sounds attackSound;
-	private final Assets.Atlases atlasDefinition;
+	private final Atlases atlasDefinition;
+	private final Agility[] agility;
 
-	Enemies(final String displayName, final Assets.Sounds attackSound, final Assets.Atlases atlasDefinition) {
+	Enemies(final String displayName, final Assets.Sounds attackSound, final Atlases atlasDefinition, Agility[] agility) {
 		this.displayName = displayName;
 		this.attackSound = attackSound;
 		this.atlasDefinition = atlasDefinition;
+		this.agility = agility;
 	}
 
 	@Override
@@ -33,7 +38,7 @@ public enum Enemies implements CharacterDefinition {
 	}
 
 	@Override
-	public Assets.Atlases getAtlasDefinition() {
+	public Atlases getAtlasDefinition() {
 		return atlasDefinition;
 	}
 }
