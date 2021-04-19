@@ -40,10 +40,10 @@ public class MapNodeData {
 	}
 
 	public MapNodeData(final Model tileModel, final int row, final int col, final MapNodesTypes type) {
-		if (tileModel != null) {
-			initializeModelInstance(tileModel, row, col);
-		}
 		initializeFields(row, col, type);
+		if (tileModel != null) {
+			initializeModelInstance(tileModel);
+		}
 	}
 
 	private void initializeFields(final int row, final int col, final MapNodesTypes type) {
@@ -52,7 +52,7 @@ public class MapNodeData {
 		this.col = col;
 	}
 
-	private void initializeModelInstance(final Model tileModel, final int row, final int col) {
+	public void initializeModelInstance(final Model tileModel) {
 		this.modelInstance = new ModelInstance(tileModel);
 		Material material = modelInstance.materials.get(0);
 		material.remove(ColorAttribute.Diffuse);
