@@ -9,8 +9,16 @@ public class Strength {
 	private final int minDamage;
 	private final int maxDamage;
 
-	public Strength(final int damage) {
+	private Strength(final int damage) {
 		this.minDamage = damage;
 		this.maxDamage = damage;
+	}
+
+	public static Strength of(final int damage) {
+		return new Strength(damage);
+	}
+	
+	public static Strength of(final int minDamage, final int maxDamage) {
+		return new Strength(minDamage, maxDamage);
 	}
 }

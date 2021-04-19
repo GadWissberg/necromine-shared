@@ -14,24 +14,28 @@ public enum Enemies implements CharacterDefinition {
 			Assets.Sounds.ATTACK_CLAW,
 			Atlases.ZEALOT,
 			List.of(LOW, MED, MED, HIGH, HIGH),
-			List.of(new Strength(1), new Strength(1), new Strength(1), new Strength(1, 2), new Strength(1, 2)));
+			List.of(Strength.of(1), Strength.of(1), Strength.of(1), Strength.of(1, 2), Strength.of(1, 2)),
+			List.of(2, 2, 2, 3, 3));
 
 	private final String displayName;
 	private final Assets.Sounds attackSound;
 	private final Atlases atlasDefinition;
 	private final List<Agility> agility;
 	private final List<Strength> strength;
+	private final List<Integer> health;
 
 	Enemies(final String displayName,
 			final Assets.Sounds attackSound,
 			final Atlases atlasDefinition,
 			final List<Agility> agility,
-			final List<Strength> strength) {
+			final List<Strength> strength,
+			final List<Integer> health) {
 		this.displayName = displayName;
 		this.attackSound = attackSound;
 		this.atlasDefinition = atlasDefinition;
 		this.agility = agility;
 		this.strength = strength;
+		this.health = health;
 	}
 
 	@Override
