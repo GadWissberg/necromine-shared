@@ -9,6 +9,8 @@ public final class MapJsonKeys {
 	public static final String MATRIX = "matrix";
 	public static final String ROW = "row";
 	public static final String COL = "col";
+	public static final String V_SCALE = "v_scale";
+	public static final String TEXTURE = "texture";
 	public static final String DIRECTION = "direction";
 	public static final String CHARACTERS = "characters";
 	public static final String TYPE = "type";

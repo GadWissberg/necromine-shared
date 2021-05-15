@@ -6,12 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
 @Getter
 public class Wall {
 	private final ModelInstance modelInstance;
 
 	@Setter
 	private Assets.FloorsTextures definition;
+
+	@Setter
+	private Float vScale;
+
+	public Wall(ModelInstance modelInstance, Assets.FloorsTextures definition) {
+		this.modelInstance = modelInstance;
+		this.definition = definition;
+	}
 }
 
