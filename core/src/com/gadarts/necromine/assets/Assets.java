@@ -250,8 +250,7 @@ public final class Assets {
 	 */
 	@Getter
 	public enum Models implements ModelDefinition {
-		WALL_1,
-		WALL_2,
+		SARCOPHAG_1,
 		COLT,
 		HAMMER,
 		PILLAR,
@@ -262,10 +261,8 @@ public final class Assets {
 		STREET_LAMP("#FFFFFF"),
 		STREET_DOOR,
 		STREET_SIGN,
-		CAR,
 		FIRE_HYDRANT,
 		SIGN,
-		FENCE,
 		WINDOW("#E4E000"),
 		CAVE_WALL_SINGLE;
 

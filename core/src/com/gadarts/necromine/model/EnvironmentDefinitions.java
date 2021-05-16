@@ -3,6 +3,7 @@ package com.gadarts.necromine.model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Vector3;
 import com.gadarts.necromine.assets.Assets;
+import com.gadarts.necromine.assets.Assets.Models;
 import com.gadarts.necromine.model.characters.Direction;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -15,27 +16,24 @@ import static com.gadarts.necromine.model.characters.Direction.NORTH;
  */
 @Getter
 public enum EnvironmentDefinitions implements ModelElementDefinition {
-	MINE_WALL_1(Assets.Models.WALL_1, 1, 4, "Mine Wall 4x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN, true, true),
-	MINE_WALL_2(Assets.Models.WALL_2, 1, 2, "Mine Wall 2x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN, true, true),
-	CAVE_SUPPORTER_1(Assets.Models.CAVE_SUPPORTER_1, 1, 1, "Mine Wall Supporter #1", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
-	CAVE_SUPPORTER_2(Assets.Models.CAVE_SUPPORTER_2, 1, 1, "Mine Wall Supporter #2", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
-	CAVE_SUPPORTER_3(Assets.Models.CAVE_SUPPORTER_3, 1, 1, "Mine Wall Supporter #3", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
-	PILLAR(Assets.Models.PILLAR, 1, 1, "Pillar", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	STREET_LAMP(Assets.Models.STREET_LAMP, 1, 1, "Street Lamp", true, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, new LightEmission(new Vector3(0, 2, 0), 1f, 3f)),
-	STREET_DOOR(Assets.Models.STREET_DOOR, 1, 1, "Street Door", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true),
-	STREET_SIGN(Assets.Models.STREET_SIGN, 1, 1, "Easy St.", true, Vector3.Zero, MapNodesTypes.PASSABLE_NODE),
-	CAR(Assets.Models.CAR, 4, 1, "Car", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	FIRE_HYDRANT(Assets.Models.FIRE_HYDRANT, 1, 1, "Fire Hydrant", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	SIGN(Assets.Models.SIGN, 1, 1, "Syphilis", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	FENCE(Assets.Models.FENCE, 1, 1, "Fence", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	WINDOW(Assets.Models.WINDOW, 1, 1, "Window", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true),
-	MINE_WALL_3(Assets.Models.CAVE_WALL_SINGLE, 1, 1, "Mine Wall 1x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN, true, true);
+	SARCOPHAG_1(Models.SARCOPHAG_1, 1, 1, "Sarcophag #1", true, new Vector3(-0.4F, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
+	CAVE_SUPPORTER_1(Models.CAVE_SUPPORTER_1, 1, 1, "Mine Wall Supporter #1", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
+	CAVE_SUPPORTER_2(Models.CAVE_SUPPORTER_2, 1, 1, "Mine Wall Supporter #2", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
+	CAVE_SUPPORTER_3(Models.CAVE_SUPPORTER_3, 1, 1, "Mine Wall Supporter #3", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
+	PILLAR(Models.PILLAR, 1, 1, "Pillar", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
+	STREET_LAMP(Models.STREET_LAMP, 1, 1, "Street Lamp", true, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, new LightEmission(new Vector3(0, 2, 0), 1f, 3f)),
+	STREET_DOOR(Models.STREET_DOOR, 1, 1, "Street Door", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true),
+	STREET_SIGN(Models.STREET_SIGN, 1, 1, "Easy St.", true, Vector3.Zero, MapNodesTypes.PASSABLE_NODE),
+	FIRE_HYDRANT(Models.FIRE_HYDRANT, 1, 1, "Fire Hydrant", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
+	SIGN(Models.SIGN, 1, 1, "Syphilis", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
+	WINDOW(Models.WINDOW, 1, 1, "Window", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true),
+	MINE_WALL_3(Models.CAVE_WALL_SINGLE, 1, 1, "Mine Wall 1x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN, true, true);
 
 	@Getter(AccessLevel.NONE)
 	private final Vector3 offset;
 
 	@Getter(AccessLevel.NONE)
-	private final Assets.Models model;
+	private final Models model;
 
 	private final int width;
 	private final int depth;
@@ -46,7 +44,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	private final LightEmission lightEmission;
 	private final boolean renderWhenFrontOnly;
 
-	EnvironmentDefinitions(final Assets.Models model,
+	EnvironmentDefinitions(final Models model,
 						   final int width,
 						   final int depth,
 						   final String displayName,
@@ -57,7 +55,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 		this(model, width, depth, displayName, true, offset, nodeType, isWall, null, renderWhenFrontOnly);
 	}
 
-	EnvironmentDefinitions(final Assets.Models model,
+	EnvironmentDefinitions(final Models model,
 						   final int width,
 						   final int depth,
 						   final String displayName,
@@ -68,7 +66,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 		this(model, width, depth, displayName, castShadow, offset, nodeType, false, null, renderWhenFrontOnly);
 	}
 
-	EnvironmentDefinitions(final Assets.Models model,
+	EnvironmentDefinitions(final Models model,
 						   final int width,
 						   final int depth,
 						   final String displayName,
@@ -78,7 +76,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 		this(model, width, depth, displayName, castShadow, offset, nodeType, false, null, false);
 	}
 
-	EnvironmentDefinitions(final Assets.Models model,
+	EnvironmentDefinitions(final Models model,
 						   final int width,
 						   final int depth,
 						   final String displayName,
@@ -89,7 +87,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 		this(model, width, depth, displayName, castShadow, offset, nodeType, false, lightEmission, false);
 	}
 
-	EnvironmentDefinitions(final Assets.Models model,
+	EnvironmentDefinitions(final Models model,
 						   final int width,
 						   final int depth,
 						   final String displayName,
@@ -121,7 +119,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	}
 
 	@Override
-	public Assets.Models getModelDefinition() {
+	public Models getModelDefinition() {
 		return model;
 	}
 
