@@ -69,7 +69,6 @@ public class WallCreator implements Disposable {
 		Wall northWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = northWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow());
-		modelInstance.transform.rotate(Vector3.X, -90);
 		return northWall;
 	}
 
@@ -96,6 +95,10 @@ public class WallCreator implements Disposable {
 		textureAtt.scaleV = adjustWallBetweenTwoNodes(southernN, northernN, wallBetween);
 		textureAtt.scaleV = vScale != 0 ? vScale : textureAtt.scaleV;
 		float degrees = (southernN.getHeight() > northernN.getHeight() ? -1 : 1) * 90F;
+		if (southernN.getHeight() > northernN.getHeight()) {
+			textureAtt.scaleV *= -1;
+			textureAtt.scaleU *= -1;
+		}
 		modelInstance.transform.rotate(Vector3.X, degrees);
 	}
 
@@ -155,7 +158,7 @@ public class WallCreator implements Disposable {
 								final MapNodeData northernNode) {
 		if (northernNode.getHeight() == southernNode.getHeight()) return;
 		if (northernNode.getSouthWall() == null && southernNode.getNorthWall() == null) {
-			southernNode.setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, FLOOR_PAVEMENT_0));
+			southernNode.setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, MISSING));
 		}
 		adjustWallBetweenNorthAndSouth(southernNode, northernNode);
 	}
@@ -164,7 +167,7 @@ public class WallCreator implements Disposable {
 								final MapNodeData southernNode) {
 		if (northernNode.getHeight() == southernNode.getHeight()) return;
 		if (southernNode.getNorthWall() == null && northernNode.getSouthWall() == null) {
-			northernNode.setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, FLOOR_PAVEMENT_0));
+			northernNode.setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, MISSING));
 		}
 		adjustWallBetweenNorthAndSouth(southernNode, northernNode, 0);
 	}
@@ -174,7 +177,7 @@ public class WallCreator implements Disposable {
 		if (easternNode.getHeight() == westernNode.getHeight()) return;
 		boolean hasJustBeenCreated = false;
 		if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
-			westernNode.setEastWall(createEastWall(westernNode, wallModel, assetsManager, FLOOR_PAVEMENT_0));
+			westernNode.setEastWall(createEastWall(westernNode, wallModel, assetsManager, MISSING));
 			hasJustBeenCreated = true;
 		}
 		adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
@@ -184,7 +187,7 @@ public class WallCreator implements Disposable {
 		if (easternNode.getHeight() == westernNode.getHeight()) return;
 		boolean hasJustBeenCreated = false;
 		if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
-			easternNode.setWestWall(createWestWall(easternNode, wallModel, assetsManager, FLOOR_PAVEMENT_0));
+			easternNode.setWestWall(createWestWall(easternNode, wallModel, assetsManager, MISSING));
 			hasJustBeenCreated = true;
 		}
 		adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
