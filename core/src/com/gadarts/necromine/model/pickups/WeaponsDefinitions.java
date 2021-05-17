@@ -13,12 +13,6 @@ public enum WeaponsDefinitions implements ItemDefinition {
 			0, 1, 0, 0,
 			0, 1, 0, 0,
 	}, true, "Axe-Pick"),
-	HAMMER(2, 4, 1, Assets.UiTextures.WEAPON_HAMMER, Assets.Sounds.ATTACK_HAMMER, new int[]{
-			1, 1,
-			1, 1,
-			1, 1,
-			1, 1,
-	}, true, "Hammer", Assets.Models.HAMMER),
 	COLT(2, 2, 2, Assets.UiTextures.WEAPON_COLT, Assets.Sounds.ATTACK_COLT, new int[]{
 			1, 1,
 			1, 0

@@ -53,7 +53,6 @@ public final class Assets {
 		PLAYER_GENERIC(),
 		PLAYER_AXE_PICK(WeaponsDefinitions.AXE_PICK),
 		PLAYER_COLT(WeaponsDefinitions.COLT),
-		PLAYER_HAMMER(WeaponsDefinitions.HAMMER),
 		ZEALOT();
 
 		private final String filePath;
@@ -251,8 +250,9 @@ public final class Assets {
 	@Getter
 	public enum Models implements ModelDefinition {
 		SARCOPHAG_1,
+		POTTERY_1,
+		STATUE_1,
 		COLT,
-		HAMMER,
 		PILLAR,
 		CAVE_SUPPORTER_1(),
 		CAVE_SUPPORTER_2(),
@@ -260,10 +260,8 @@ public final class Assets {
 		CURSOR(0.1F),
 		STREET_LAMP("#FFFFFF"),
 		STREET_DOOR,
-		STREET_SIGN,
 		FIRE_HYDRANT,
 		SIGN,
-		WINDOW("#E4E000"),
 		CAVE_WALL_SINGLE;
 
 		private final String filePath;
