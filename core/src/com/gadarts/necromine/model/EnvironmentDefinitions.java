@@ -16,14 +16,13 @@ import static com.gadarts.necromine.model.characters.Direction.NORTH;
  */
 @Getter
 public enum EnvironmentDefinitions implements ModelElementDefinition {
-	SARCOPHAG_1(Models.SARCOPHAG_1, 1, 1, "Sarcophag #1", true, new Vector3(-0.4F, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
+	SARCOPHAG_1(Models.SARCOPHAG_1, 1, 1, "Sarcophag #1", true, new Vector3(-0.4F, 0, 0), MapNodesTypes.PASSABLE_NODE),
 	POTTERY_1(Models.POTTERY_1, 1, 1, "Pottery #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	STATUE_1(Models.STATUE_1, 1, 1, "Statue #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
+	PILLAR_1(Models.PILLAR_1, 1, 1, "Pillar #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	CAVE_SUPPORTER_1(Models.CAVE_SUPPORTER_1, 1, 1, "Mine Wall Supporter #1", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
 	CAVE_SUPPORTER_2(Models.CAVE_SUPPORTER_2, 1, 1, "Mine Wall Supporter #2", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
 	CAVE_SUPPORTER_3(Models.CAVE_SUPPORTER_3, 1, 1, "Mine Wall Supporter #3", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
-	PILLAR(Models.PILLAR, 1, 1, "Pillar", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	STREET_LAMP(Models.STREET_LAMP, 1, 1, "Street Lamp", true, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, new LightEmission(new Vector3(0, 2, 0), 1f, 3f)),
 	STREET_DOOR(Models.STREET_DOOR, 1, 1, "Street Door", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true),
 	FIRE_HYDRANT(Models.FIRE_HYDRANT, 1, 1, "Fire Hydrant", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	SIGN(Models.SIGN, 1, 1, "Syphilis", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
