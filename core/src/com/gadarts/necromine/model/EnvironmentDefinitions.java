@@ -20,10 +20,10 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	POTTERY_1(Models.POTTERY_1, 1, 1, "Pottery #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	STATUE_1(Models.STATUE_1, 1, 1, "Statue #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	PILLAR_1(Models.PILLAR_1, 1, 1, "Pillar #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
+	TORCH_1(Models.TORCH_1, 1, 1, "Torch #1", false, new Vector3(-0.5F, 1.2F, 0), MapNodesTypes.PASSABLE_NODE, new LightEmission(new Vector3(0.3F, 0.2F, 0F), 1F, 3F)),
 	CAVE_SUPPORTER_1(Models.CAVE_SUPPORTER_1, 1, 1, "Mine Wall Supporter #1", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
 	CAVE_SUPPORTER_2(Models.CAVE_SUPPORTER_2, 1, 1, "Mine Wall Supporter #2", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
 	CAVE_SUPPORTER_3(Models.CAVE_SUPPORTER_3, 1, 1, "Mine Wall Supporter #3", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
-	STREET_DOOR(Models.STREET_DOOR, 1, 1, "Street Door", false, Vector3.Zero, MapNodesTypes.PASSABLE_NODE, true),
 	FIRE_HYDRANT(Models.FIRE_HYDRANT, 1, 1, "Fire Hydrant", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	SIGN(Models.SIGN, 1, 1, "Syphilis", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	MINE_WALL_3(Models.CAVE_WALL_SINGLE, 1, 1, "Mine Wall 1x1", new Vector3(0.5f, 0, 0), MapNodesTypes.OBSTACLE_KEY_DIAGONAL_FORBIDDEN, true, true);
