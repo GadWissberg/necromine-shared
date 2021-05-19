@@ -53,7 +53,8 @@ public final class Assets {
 		PLAYER_GENERIC(),
 		PLAYER_AXE_PICK(WeaponsDefinitions.AXE_PICK),
 		PLAYER_COLT(WeaponsDefinitions.COLT),
-		ZEALOT();
+		ZEALOT(),
+		FLAME();
 
 		private final String filePath;
 		private final WeaponsDefinitions relatedWeapon;
@@ -88,6 +89,11 @@ public final class Assets {
 		@Override
 		public Class<TextureAtlas> getTypeClass() {
 			return TextureAtlas.class;
+		}
+
+		@Override
+		public String getName() {
+			return name();
 		}
 	}
 
@@ -295,6 +301,7 @@ public final class Assets {
 	@Getter
 	public enum TexturesTypes {
 		Floors(FloorsTextures.values()),
+		Environment(FloorsTextures.values()),
 		UI(UiTextures.values());
 
 		private final TextureDefinition[] definitions;

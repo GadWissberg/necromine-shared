@@ -8,6 +8,7 @@ import com.gadarts.necromine.model.characters.Direction;
 import lombok.AccessLevel;
 import lombok.Getter;
 
+import static com.gadarts.necromine.assets.Assets.Atlases.FLAME;
 import static com.gadarts.necromine.model.characters.Direction.EAST;
 import static com.gadarts.necromine.model.characters.Direction.NORTH;
 
@@ -20,7 +21,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	POTTERY_1(Models.POTTERY_1, 1, 1, "Pottery #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	STATUE_1(Models.STATUE_1, 1, 1, "Statue #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
 	PILLAR_1(Models.PILLAR_1, 1, 1, "Pillar #1", true, Vector3.Zero, MapNodesTypes.OBSTACLE_KEY_DIAGONAL_ALLOWED),
-	TORCH_1(Models.TORCH_1, 1, 1, "Torch #1", false, new Vector3(-0.5F, 1.2F, 0), MapNodesTypes.PASSABLE_NODE, new LightEmission(new Vector3(0.3F, 0.2F, 0F), 1F, 3F)),
+	TORCH_1(Models.TORCH_1, 1, 1, "Torch #1", false, new Vector3(-0.5F, 1.2F, 0), MapNodesTypes.PASSABLE_NODE, new LightEmission(new Vector3(0.3F, 0.2F, 0F), 1F, 3F), new RelativeBillboard(FLAME, 0.1F, new Vector3(0.3F, 0.4F, 0F))),
 	CAVE_SUPPORTER_1(Models.CAVE_SUPPORTER_1, 1, 1, "Mine Wall Supporter #1", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
 	CAVE_SUPPORTER_2(Models.CAVE_SUPPORTER_2, 1, 1, "Mine Wall Supporter #2", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
 	CAVE_SUPPORTER_3(Models.CAVE_SUPPORTER_3, 1, 1, "Mine Wall Supporter #3", false, new Vector3(0.5f, 0, 0), MapNodesTypes.PASSABLE_NODE),
@@ -42,6 +43,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 	private final boolean isWall;
 	private final LightEmission lightEmission;
 	private final boolean renderWhenFrontOnly;
+	private final RelativeBillboard relativeBillboard;
 
 	EnvironmentDefinitions(final Models model,
 						   final int width,
@@ -51,7 +53,17 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 						   final MapNodesTypes nodeType,
 						   final boolean isWall,
 						   final boolean renderWhenFrontOnly) {
-		this(model, width, depth, displayName, true, offset, nodeType, isWall, null, renderWhenFrontOnly);
+		this(model,
+				width,
+				depth,
+				displayName,
+				true,
+				offset,
+				nodeType,
+				isWall,
+				null,
+				renderWhenFrontOnly,
+				null);
 	}
 
 	EnvironmentDefinitions(final Models model,
@@ -62,7 +74,17 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 						   final Vector3 offset,
 						   final MapNodesTypes nodeType,
 						   final boolean renderWhenFrontOnly) {
-		this(model, width, depth, displayName, castShadow, offset, nodeType, false, null, renderWhenFrontOnly);
+		this(model,
+				width,
+				depth,
+				displayName,
+				castShadow,
+				offset,
+				nodeType,
+				false,
+				null,
+				renderWhenFrontOnly,
+				null);
 	}
 
 	EnvironmentDefinitions(final Models model,
@@ -72,7 +94,17 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 						   final boolean castShadow,
 						   final Vector3 offset,
 						   final MapNodesTypes nodeType) {
-		this(model, width, depth, displayName, castShadow, offset, nodeType, false, null, false);
+		this(model,
+				width,
+				depth,
+				displayName,
+				castShadow,
+				offset,
+				nodeType,
+				false,
+				null,
+				false,
+				null);
 	}
 
 	EnvironmentDefinitions(final Models model,
@@ -82,8 +114,19 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 						   final boolean castShadow,
 						   final Vector3 offset,
 						   final MapNodesTypes nodeType,
-						   final LightEmission lightEmission) {
-		this(model, width, depth, displayName, castShadow, offset, nodeType, false, lightEmission, false);
+						   final LightEmission lightEmission,
+						   final RelativeBillboard relativeBillboard) {
+		this(model,
+				width,
+				depth,
+				displayName,
+				castShadow,
+				offset,
+				nodeType,
+				false,
+				lightEmission,
+				false,
+				relativeBillboard);
 	}
 
 	EnvironmentDefinitions(final Models model,
@@ -95,7 +138,8 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 						   final MapNodesTypes nodeType,
 						   final boolean isWall,
 						   final LightEmission lightEmission,
-						   final boolean renderWhenFrontOnly) {
+						   final boolean renderWhenFrontOnly,
+						   final RelativeBillboard relativeBillboard) {
 		this.model = model;
 		this.width = width;
 		this.depth = depth;
@@ -106,6 +150,7 @@ public enum EnvironmentDefinitions implements ModelElementDefinition {
 		this.isWall = isWall;
 		this.lightEmission = lightEmission;
 		this.renderWhenFrontOnly = renderWhenFrontOnly;
+		this.relativeBillboard = relativeBillboard;
 	}
 
 	public Vector3 getOffset(final Vector3 output) {
