@@ -13,6 +13,7 @@ public class LightEmission {
 	private final Vector3 relativePosition;
 	private final float intensity;
 	private final float radius;
+	private final boolean flicker;
 
 	public Vector3 getRelativePosition(final Vector3 output) {
 		return output.set(relativePosition);
