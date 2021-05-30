@@ -5,8 +5,8 @@ import lombok.Getter;
 
 @Getter
 public enum SpriteType {
-	IDLE(0.5f),
-	RUN(0.15f),
+	IDLE(0.5f, Animation.PlayMode.LOOP_PINGPONG),
+	RUN(0.07f),
 	ATTACK(0.15f, Animation.PlayMode.NORMAL),
 	PAIN(),
 	PICKUP(0.2f, Animation.PlayMode.NORMAL, false, true),
@@ -24,6 +24,10 @@ public enum SpriteType {
 
 	SpriteType(final float animationDuration) {
 		this(animationDuration, Animation.PlayMode.LOOP);
+	}
+
+	SpriteType(final float animationDuration, final boolean addReverse) {
+		this(animationDuration, Animation.PlayMode.LOOP, false, addReverse);
 	}
 
 	SpriteType(final float animationDuration, final Animation.PlayMode playMode) {
