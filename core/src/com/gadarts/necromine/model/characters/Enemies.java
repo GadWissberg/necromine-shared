@@ -10,9 +10,9 @@ import static com.gadarts.necromine.model.characters.Agility.*;
 
 @Getter
 public enum Enemies implements CharacterDefinition {
-	ZEALOT("Zealot",
+	ANUBIS("Anubis Zealot",
 			Assets.Sounds.ATTACK_CLAW,
-			Atlases.ZEALOT,
+			Atlases.ANUBIS,
 			List.of(LOW, MED, MED, HIGH, HIGH),
 			List.of(Strength.of(1), Strength.of(1), Strength.of(1), Strength.of(1, 2), Strength.of(1, 2)),
 			List.of(2, 2, 2, 3, 3));

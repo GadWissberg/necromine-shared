@@ -50,11 +50,11 @@ public final class Assets {
 	 */
 	@Getter
 	public enum Atlases implements AtlasDefinition {
-		PLAYER_GENERIC(),
+		PLAYER_GENERIC,
 		PLAYER_KNIFE(WeaponsDefinitions.AXE_PICK),
 		PLAYER_COLT(WeaponsDefinitions.COLT),
-		ZEALOT(),
-		FLAME();
+		ANUBIS,
+		FLAME;
 
 		private final String filePath;
 		private final WeaponsDefinitions relatedWeapon;

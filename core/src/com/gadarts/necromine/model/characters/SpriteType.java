@@ -5,29 +5,21 @@ import lombok.Getter;
 
 @Getter
 public enum SpriteType {
-	IDLE(0.5f, Animation.PlayMode.LOOP_PINGPONG),
+	IDLE(0.4f, Animation.PlayMode.LOOP_PINGPONG),
 	RUN(0.07f),
-	ATTACK(0.15f, Animation.PlayMode.NORMAL),
-	PAIN(),
+	ATTACK(0.07f, Animation.PlayMode.NORMAL),
+	PAIN(0.5F),
 	PICKUP(0.2f, Animation.PlayMode.NORMAL, false, true),
-	DIE(0.15f, Animation.PlayMode.NORMAL, true),
-	DEAD();
+	LIGHT_DEATH_1(0.07f, Animation.PlayMode.NORMAL, true, false, "Light Death 1");
 
 	private final float animationDuration;
 	private final Animation.PlayMode playMode;
 	private final boolean singleAnimation;
 	private final boolean addReverse;
-
-	SpriteType() {
-		this(0);
-	}
+	private final String[] severalAnimations;
 
 	SpriteType(final float animationDuration) {
 		this(animationDuration, Animation.PlayMode.LOOP);
-	}
-
-	SpriteType(final float animationDuration, final boolean addReverse) {
-		this(animationDuration, Animation.PlayMode.LOOP, false, addReverse);
 	}
 
 	SpriteType(final float animationDuration, final Animation.PlayMode playMode) {
@@ -36,17 +28,13 @@ public enum SpriteType {
 
 	SpriteType(final float animationDuration,
 			   final Animation.PlayMode playMode,
-			   final boolean singleAnimation) {
-		this(animationDuration, playMode, singleAnimation, false);
-	}
-
-	SpriteType(final float animationDuration,
-			   final Animation.PlayMode playMode,
 			   final boolean singleAnimation,
-			   final boolean addReverse) {
+			   final boolean addReverse,
+			   final String... severalAnimations) {
 		this.animationDuration = animationDuration;
 		this.playMode = playMode;
 		this.singleAnimation = singleAnimation;
 		this.addReverse = addReverse;
+		this.severalAnimations = severalAnimations;
 	}
 }
