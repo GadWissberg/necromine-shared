@@ -21,6 +21,7 @@ import static com.gadarts.necromine.assets.Assets.FloorsTextures.*;
 
 public class WallCreator implements Disposable {
 	private static final Vector3 auxVector3_1 = new Vector3();
+	private static final Vector3 auxVector3_2 = new Vector3();
 	private final GameAssetsManager assetsManager;
 
 	@Getter
@@ -118,9 +119,18 @@ public class WallCreator implements Disposable {
 		textureAtt.scaleV = adjustWallBetweenTwoNodes(eastNode, westNode, wallBetween);
 		textureAtt.scaleV = vScale != 0 ? vScale : textureAtt.scaleV;
 		boolean eastHigherThanWest = eastNode.getHeight() > westNode.getHeight();
+		modelInstance.transform.getTranslation(auxVector3_1).z = eastNode.getRow();
+		modelInstance.transform.getScale(auxVector3_2);
+		modelInstance.transform.setToTranslationAndScaling(auxVector3_1, auxVector3_2);
 		modelInstance.transform.rotate(Vector3.Y, (eastHigherThanWest ? -1 : 1) * 90F);
 		modelInstance.transform.rotate(Vector3.X, 90F);
 		if (hasJustBeenCreated) {
+			if (eastHigherThanWest) {
+				modelInstance.transform.translate(0F, 0F, -1F);
+			} else {
+				modelInstance.transform.translate(-1F, 0F, 0F);
+			}
+		} else {
 			if (eastHigherThanWest) {
 				modelInstance.transform.translate(0F, 0F, -1F);
 			} else {
@@ -156,41 +166,63 @@ public class WallCreator implements Disposable {
 
 	public void adjustNorthWall(final MapNodeData southernNode,
 								final MapNodeData northernNode) {
-		if (northernNode.getHeight() == southernNode.getHeight()) return;
-		if (northernNode.getSouthWall() == null && southernNode.getNorthWall() == null) {
-			southernNode.setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, MISSING));
+		if (northernNode.getHeight() != southernNode.getHeight()) {
+			if (northernNode.getSouthWall() == null && southernNode.getNorthWall() == null) {
+				southernNode.setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, MISSING));
+			}
+			adjustWallBetweenNorthAndSouth(southernNode, northernNode);
+		} else {
+			clearWallBetweenNorthAndSouthNodes(northernNode, southernNode);
 		}
-		adjustWallBetweenNorthAndSouth(southernNode, northernNode);
 	}
 
 	public void adjustSouthWall(final MapNodeData northernNode,
 								final MapNodeData southernNode) {
-		if (northernNode.getHeight() == southernNode.getHeight()) return;
-		if (southernNode.getNorthWall() == null && northernNode.getSouthWall() == null) {
-			northernNode.setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, MISSING));
+		if (northernNode.getHeight() != southernNode.getHeight()) {
+			if (southernNode.getNorthWall() == null && northernNode.getSouthWall() == null) {
+				northernNode.setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, MISSING));
+			}
+			adjustWallBetweenNorthAndSouth(southernNode, northernNode, 0);
+		} else {
+			clearWallBetweenNorthAndSouthNodes(northernNode, southernNode);
 		}
-		adjustWallBetweenNorthAndSouth(southernNode, northernNode, 0);
 	}
 
 	public void adjustEastWall(final MapNodeData westernNode,
 							   final MapNodeData easternNode) {
-		if (easternNode.getHeight() == westernNode.getHeight()) return;
-		boolean hasJustBeenCreated = false;
-		if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
-			westernNode.setEastWall(createEastWall(westernNode, wallModel, assetsManager, MISSING));
-			hasJustBeenCreated = true;
+		if (easternNode.getHeight() != westernNode.getHeight()) {
+			boolean hasJustBeenCreated = false;
+			if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
+				westernNode.setEastWall(createEastWall(westernNode, wallModel, assetsManager, MISSING));
+				hasJustBeenCreated = true;
+			}
+			adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
+		} else {
+			clearWallBetweenWestAndEastNodes(westernNode, easternNode);
 		}
-		adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
+	}
+
+	private void clearWallBetweenWestAndEastNodes(MapNodeData westernNode, MapNodeData easternNode) {
+		easternNode.setWestWall(null);
+		westernNode.setEastWall(null);
+	}
+
+	private void clearWallBetweenNorthAndSouthNodes(MapNodeData northernNode, MapNodeData southernNode) {
+		southernNode.setNorthWall(null);
+		northernNode.setSouthWall(null);
 	}
 
 	public void adjustWestWall(final MapNodeData easternNode, final MapNodeData westernNode) {
-		if (easternNode.getHeight() == westernNode.getHeight()) return;
-		boolean hasJustBeenCreated = false;
-		if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
-			easternNode.setWestWall(createWestWall(easternNode, wallModel, assetsManager, MISSING));
-			hasJustBeenCreated = true;
+		if (easternNode.getHeight() != westernNode.getHeight()) {
+			boolean hasJustBeenCreated = false;
+			if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
+				easternNode.setWestWall(createWestWall(easternNode, wallModel, assetsManager, MISSING));
+				hasJustBeenCreated = true;
+			}
+			adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
+		} else {
+			clearWallBetweenWestAndEastNodes(westernNode, easternNode);
 		}
-		adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
 	}
 
 	@Override
