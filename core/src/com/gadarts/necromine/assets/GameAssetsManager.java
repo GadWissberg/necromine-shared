@@ -71,7 +71,7 @@ public class GameAssetsManager extends AssetManager {
 		Array<Texture> textures = new Array<>();
 		getAll(Texture.class, textures);
 		textures.forEach(texture -> texture.setWrap(TextureWrap.Repeat, TextureWrap.Repeat));
-		Arrays.stream(Assets.FloorsTextures.values())
+		Arrays.stream(Assets.SurfaceTextures.values())
 				.filter(texture -> texture.getTextureWrap().equals(TextureWrap.ClampToEdge))
 				.forEach(t -> get(t.getFilePath(), Texture.class)
 						.setWrap(TextureWrap.ClampToEdge, TextureWrap.ClampToEdge));

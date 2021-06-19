@@ -32,7 +32,7 @@ public class MapNodeData {
 
 	private ModelInstance modelInstance;
 	private MapNodesTypes mapNodeType;
-	private Assets.FloorsTextures textureDefinition;
+	private Assets.SurfaceTextures textureDefinition;
 	private float height;
 
 	public MapNodeData(final int row, final int col, final MapNodesTypes type) {

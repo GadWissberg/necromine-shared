@@ -2,7 +2,6 @@ package com.gadarts.necromine.model;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.gadarts.necromine.assets.Assets;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,12 +10,12 @@ public class Wall {
 	private final ModelInstance modelInstance;
 
 	@Setter
-	private Assets.FloorsTextures definition;
+	private Assets.SurfaceTextures definition;
 
 	@Setter
 	private Float vScale;
 
-	public Wall(ModelInstance modelInstance, Assets.FloorsTextures definition) {
+	public Wall(ModelInstance modelInstance, Assets.SurfaceTextures definition) {
 		this.modelInstance = modelInstance;
 		this.definition = definition;
 	}

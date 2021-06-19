@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
-import com.gadarts.necromine.assets.Assets.FloorsTextures;
+import com.gadarts.necromine.assets.Assets.SurfaceTextures;
 import com.gadarts.necromine.assets.GameAssetsManager;
 import com.gadarts.necromine.model.MapNodeData;
 import com.gadarts.necromine.model.Wall;
@@ -17,7 +17,7 @@ import lombok.Getter;
 
 import java.util.Optional;
 
-import static com.gadarts.necromine.assets.Assets.FloorsTextures.*;
+import static com.gadarts.necromine.assets.Assets.SurfaceTextures.*;
 
 public class WallCreator implements Disposable {
 	private static final Vector3 auxVector3_1 = new Vector3();
@@ -35,7 +35,7 @@ public class WallCreator implements Disposable {
 	public static Wall createWestWall(final MapNodeData n,
 									  final Model wallModel,
 									  final GameAssetsManager assetsManager,
-									  final FloorsTextures definition) {
+									  final SurfaceTextures definition) {
 		Wall westWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = westWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow());
@@ -45,7 +45,7 @@ public class WallCreator implements Disposable {
 	public static Wall createSouthWall(final MapNodeData n,
 									   final Model wallModel,
 									   final GameAssetsManager assetsManager,
-									   final FloorsTextures definition) {
+									   final SurfaceTextures definition) {
 		Wall southWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = southWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow() + 1);
@@ -56,7 +56,7 @@ public class WallCreator implements Disposable {
 	public static Wall createEastWall(final MapNodeData n,
 									  final Model wallModel,
 									  final GameAssetsManager assetsManager,
-									  final FloorsTextures definition) {
+									  final SurfaceTextures definition) {
 		Wall eastWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = eastWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol() + 1F, 0, n.getRow());
@@ -66,7 +66,7 @@ public class WallCreator implements Disposable {
 	public static Wall createNorthWall(final MapNodeData n,
 									   final Model wallModel,
 									   final GameAssetsManager assetsManager,
-									   final FloorsTextures definition) {
+									   final SurfaceTextures definition) {
 		Wall northWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = northWall.getModelInstance();
 		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow());
@@ -75,7 +75,7 @@ public class WallCreator implements Disposable {
 
 	public static Wall createWall(final Model wallModel,
 								  final GameAssetsManager assetsManager,
-								  final FloorsTextures definition) {
+								  final SurfaceTextures definition) {
 		ModelInstance modelInstance = new ModelInstance(wallModel);
 		TextureAttribute textureAttribute = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
 		textureAttribute.textureDescription.texture = assetsManager.getTexture(definition);

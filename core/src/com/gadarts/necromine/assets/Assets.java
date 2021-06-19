@@ -300,8 +300,8 @@ public final class Assets {
 
 	@Getter
 	public enum TexturesTypes {
-		Floors(FloorsTextures.values()),
-		Environment(FloorsTextures.values()),
+		Floors(SurfaceTextures.values()),
+		Environment(SurfaceTextures.values()),
 		UI(UiTextures.values());
 
 		private final TextureDefinition[] definitions;
@@ -321,10 +321,10 @@ public final class Assets {
 	}
 
 	/**
-	 * Image files of floors.
+	 * Image files of surfaces.
 	 */
 	@Getter
-	public enum FloorsTextures implements TextureDefinition {
+	public enum SurfaceTextures implements TextureDefinition {
 		MISSING,
 		SAND_1_VER_1,
 		SAND_1_VER_2,
@@ -342,11 +342,11 @@ public final class Assets {
 
 		private final Texture.TextureWrap textureWrap;
 
-		FloorsTextures(final Texture.TextureWrap textureWrap) {
+		SurfaceTextures(final Texture.TextureWrap textureWrap) {
 			this.textureWrap = textureWrap;
 		}
 
-		FloorsTextures() {
+		SurfaceTextures() {
 			this(Texture.TextureWrap.Repeat);
 		}
 
