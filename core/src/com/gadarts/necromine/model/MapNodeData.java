@@ -34,7 +34,6 @@ public class MapNodeData {
 	private MapNodesTypes mapNodeType;
 	private Assets.SurfaceTextures textureDefinition;
 	private float height;
-
 	public MapNodeData(final int row, final int col, final MapNodesTypes type) {
 		this(null, row, col, type);
 	}
@@ -44,6 +43,10 @@ public class MapNodeData {
 		if (tileModel != null) {
 			initializeModelInstance(tileModel);
 		}
+	}
+
+	public Assets.SurfaceTextures getTextureDefinition() {
+		return textureDefinition;
 	}
 
 	private void initializeFields(final int row, final int col, final MapNodesTypes type) {
