@@ -2,7 +2,6 @@ package com.gadarts.necromine.model;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Vector3;
-import com.gadarts.necromine.assets.Assets;
 import com.gadarts.necromine.assets.Assets.Models;
 import com.gadarts.necromine.model.characters.Direction;
 import lombok.AccessLevel;

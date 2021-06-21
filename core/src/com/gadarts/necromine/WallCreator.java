@@ -2,6 +2,7 @@ package com.gadarts.necromine;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttributes;
+import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
@@ -19,6 +20,9 @@ import java.util.Optional;
 
 import static com.gadarts.necromine.assets.Assets.SurfaceTextures.*;
 
+/**
+ * A tool to generate walls for nodes.
+ */
 public class WallCreator implements Disposable {
 	private static final Vector3 auxVector3_1 = new Vector3();
 	private static final Vector3 auxVector3_2 = new Vector3();
@@ -32,6 +36,14 @@ public class WallCreator implements Disposable {
 		createWallModel();
 	}
 
+	/**
+	 * Creates a western wall model for a given node.
+	 *
+	 * @param n             The target node.
+	 * @param wallModel     The wall model used for creating the model instance.
+	 * @param assetsManager Used to get the texture.
+	 * @param definition    The texture definition for the wall.
+	 */
 	public static Wall createWestWall(final MapNodeData n,
 									  final Model wallModel,
 									  final GameAssetsManager assetsManager,
@@ -42,6 +54,14 @@ public class WallCreator implements Disposable {
 		return westWall;
 	}
 
+	/**
+	 * Creates a southern wall model for a given node.
+	 *
+	 * @param n             The target node.
+	 * @param wallModel     The wall model used for creating the model instance.
+	 * @param assetsManager Used to get the texture.
+	 * @param definition    The texture definition for the wall.
+	 */
 	public static Wall createSouthWall(final MapNodeData n,
 									   final Model wallModel,
 									   final GameAssetsManager assetsManager,
@@ -53,6 +73,14 @@ public class WallCreator implements Disposable {
 		return southWall;
 	}
 
+	/**
+	 * Creates an eastern wall model for a given node.
+	 *
+	 * @param n             The target node.
+	 * @param wallModel     The wall model used for creating the model instance.
+	 * @param assetsManager Used to get the texture.
+	 * @param definition    The texture definition for the wall.
+	 */
 	public static Wall createEastWall(final MapNodeData n,
 									  final Model wallModel,
 									  final GameAssetsManager assetsManager,
@@ -63,6 +91,14 @@ public class WallCreator implements Disposable {
 		return eastWall;
 	}
 
+	/**
+	 * Creates a northern wall model for a given node.
+	 *
+	 * @param n             The target node.
+	 * @param wallModel     The wall model used for creating the model instance.
+	 * @param assetsManager Used to get the texture.
+	 * @param definition    The texture definition for the wall.
+	 */
 	public static Wall createNorthWall(final MapNodeData n,
 									   final Model wallModel,
 									   final GameAssetsManager assetsManager,
@@ -73,6 +109,14 @@ public class WallCreator implements Disposable {
 		return northWall;
 	}
 
+	/**
+	 * Creates a wall model.
+	 *
+	 * @param wallModel     The wall model used for creating the model instance.
+	 * @param assetsManager Used to get the texture.
+	 * @param definition    The texture definition for the wall.
+	 * @return
+	 */
 	public static Wall createWall(final Model wallModel,
 								  final GameAssetsManager assetsManager,
 								  final SurfaceTextures definition) {
@@ -124,18 +168,10 @@ public class WallCreator implements Disposable {
 		modelInstance.transform.setToTranslationAndScaling(auxVector3_1, auxVector3_2);
 		modelInstance.transform.rotate(Vector3.Y, (eastHigherThanWest ? -1 : 1) * 90F);
 		modelInstance.transform.rotate(Vector3.X, 90F);
-		if (hasJustBeenCreated) {
-			if (eastHigherThanWest) {
-				modelInstance.transform.translate(0F, 0F, -1F);
-			} else {
-				modelInstance.transform.translate(-1F, 0F, 0F);
-			}
+		if (eastHigherThanWest) {
+			modelInstance.transform.translate(0F, 0F, -1F);
 		} else {
-			if (eastHigherThanWest) {
-				modelInstance.transform.translate(0F, 0F, -1F);
-			} else {
-				modelInstance.transform.translate(-1F, 0F, 0F);
-			}
+			modelInstance.transform.translate(-1F, 0F, 0F);
 		}
 	}
 
@@ -152,7 +188,7 @@ public class WallCreator implements Disposable {
 		return sizeHeight;
 	}
 
-	private void createWallModel() {
+	private void createWallModel( ) {
 		ModelBuilder modelBuilder = new ModelBuilder();
 		wallModel = modelBuilder.createRect(
 				0, 0, 1,
@@ -161,7 +197,7 @@ public class WallCreator implements Disposable {
 				0, 0, 0,
 				0, 1, 0,
 				new Material(TextureAttribute.createDiffuse((Texture) null)),
-				VertexAttributes.Usage.Position | VertexAttributes.Usage.Normal | VertexAttributes.Usage.TextureCoordinates);
+				Usage.Position | Usage.Normal | Usage.TextureCoordinates);
 	}
 
 	public void adjustNorthWall(final MapNodeData southernNode,
@@ -226,7 +262,7 @@ public class WallCreator implements Disposable {
 	}
 
 	@Override
-	public void dispose() {
+	public void dispose( ) {
 		wallModel.dispose();
 	}
 }
