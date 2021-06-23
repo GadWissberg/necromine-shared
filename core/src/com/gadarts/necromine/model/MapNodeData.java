@@ -19,21 +19,18 @@ import static com.badlogic.gdx.math.Matrix4.M13;
 public class MapNodeData {
 
 	private final static Vector3 auxVector = new Vector3();
-	private Wall eastWall;
-	private Wall southWall;
-	private Wall westWall;
-	private Wall northWall;
 
 	@Setter(AccessLevel.NONE)
-	private int col;
+	private Coords coords;
 
 	@Setter(AccessLevel.NONE)
-	private int row;
+	private NodeWalls walls = new NodeWalls();
 
 	private ModelInstance modelInstance;
 	private MapNodesTypes mapNodeType;
 	private Assets.SurfaceTextures textureDefinition;
 	private float height;
+
 	public MapNodeData(final int row, final int col, final MapNodesTypes type) {
 		this(null, row, col, type);
 	}
@@ -45,14 +42,13 @@ public class MapNodeData {
 		}
 	}
 
-	public Assets.SurfaceTextures getTextureDefinition() {
+	public Assets.SurfaceTextures getTextureDefinition( ) {
 		return textureDefinition;
 	}
 
 	private void initializeFields(final int row, final int col, final MapNodesTypes type) {
 		this.mapNodeType = type;
-		this.row = row;
-		this.col = col;
+		this.coords = new Coords(row, col);
 	}
 
 	public void initializeModelInstance(final Model tileModel) {
@@ -60,7 +56,7 @@ public class MapNodeData {
 		Material material = modelInstance.materials.get(0);
 		material.remove(ColorAttribute.Diffuse);
 		material.set(TextureAttribute.createDiffuse((Texture) null));
-		modelInstance.transform.setTranslation(col, 0, row);
+		modelInstance.transform.setTranslation(coords.getCol(), 0, coords.getRow());
 	}
 
 	public void lift(final float delta) {
@@ -78,10 +74,10 @@ public class MapNodeData {
 	}
 
 	public boolean equals(final int row, final int col) {
-		return this.row == row && this.col == col;
+		return coords.equals(row, col);
 	}
 
-	public float getHeight() {
+	public float getHeight( ) {
 		return height;
 	}
 }

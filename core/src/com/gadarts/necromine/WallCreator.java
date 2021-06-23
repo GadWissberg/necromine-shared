@@ -1,7 +1,6 @@
 package com.gadarts.necromine;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.VertexAttributes;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
@@ -12,13 +11,14 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 import com.gadarts.necromine.assets.Assets.SurfaceTextures;
 import com.gadarts.necromine.assets.GameAssetsManager;
+import com.gadarts.necromine.model.Coords;
 import com.gadarts.necromine.model.MapNodeData;
 import com.gadarts.necromine.model.Wall;
 import lombok.Getter;
 
 import java.util.Optional;
 
-import static com.gadarts.necromine.assets.Assets.SurfaceTextures.*;
+import static com.gadarts.necromine.assets.Assets.SurfaceTextures.MISSING;
 
 /**
  * A tool to generate walls for nodes.
@@ -50,7 +50,8 @@ public class WallCreator implements Disposable {
 									  final SurfaceTextures definition) {
 		Wall westWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = westWall.getModelInstance();
-		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow());
+		Coords coords = n.getCoords();
+		modelInstance.transform.setToTranslation(coords.getCol(), 0, coords.getRow());
 		return westWall;
 	}
 
@@ -68,7 +69,8 @@ public class WallCreator implements Disposable {
 									   final SurfaceTextures definition) {
 		Wall southWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = southWall.getModelInstance();
-		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow() + 1);
+		Coords coords = n.getCoords();
+		modelInstance.transform.setToTranslation(coords.getCol(), 0, coords.getRow() + 1);
 		modelInstance.transform.rotate(Vector3.X, 90);
 		return southWall;
 	}
@@ -87,7 +89,8 @@ public class WallCreator implements Disposable {
 									  final SurfaceTextures definition) {
 		Wall eastWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = eastWall.getModelInstance();
-		modelInstance.transform.setToTranslation(n.getCol() + 1F, 0, n.getRow());
+		Coords coords = n.getCoords();
+		modelInstance.transform.setToTranslation(coords.getCol() + 1F, 0, coords.getRow());
 		return eastWall;
 	}
 
@@ -105,7 +108,8 @@ public class WallCreator implements Disposable {
 									   final SurfaceTextures definition) {
 		Wall northWall = createWall(wallModel, assetsManager, definition);
 		ModelInstance modelInstance = northWall.getModelInstance();
-		modelInstance.transform.setToTranslation(n.getCol(), 0, n.getRow());
+		Coords coords = n.getCoords();
+		modelInstance.transform.setToTranslation(coords.getCol(), 0, coords.getRow());
 		return northWall;
 	}
 
@@ -134,7 +138,7 @@ public class WallCreator implements Disposable {
 	public static void adjustWallBetweenNorthAndSouth(final MapNodeData southernN,
 													  final MapNodeData northernN,
 													  final float vScale) {
-		Wall wallBetween = Optional.ofNullable(southernN.getNorthWall()).orElse(northernN.getSouthWall());
+		Wall wallBetween = Optional.ofNullable(southernN.getWalls().getNorthWall()).orElse(northernN.getWalls().getSouthWall());
 		ModelInstance modelInstance = wallBetween.getModelInstance();
 		TextureAttribute textureAtt = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
 		textureAtt.scaleV = adjustWallBetweenTwoNodes(southernN, northernN, wallBetween);
@@ -157,13 +161,13 @@ public class WallCreator implements Disposable {
 													final MapNodeData westNode,
 													final boolean hasJustBeenCreated,
 													final float vScale) {
-		Wall wallBetween = Optional.ofNullable(eastNode.getWestWall()).orElse(westNode.getEastWall());
+		Wall wallBetween = Optional.ofNullable(eastNode.getWalls().getWestWall()).orElse(westNode.getWalls().getEastWall());
 		ModelInstance modelInstance = wallBetween.getModelInstance();
 		TextureAttribute textureAtt = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
 		textureAtt.scaleV = adjustWallBetweenTwoNodes(eastNode, westNode, wallBetween);
 		textureAtt.scaleV = vScale != 0 ? vScale : textureAtt.scaleV;
 		boolean eastHigherThanWest = eastNode.getHeight() > westNode.getHeight();
-		modelInstance.transform.getTranslation(auxVector3_1).z = eastNode.getRow();
+		modelInstance.transform.getTranslation(auxVector3_1).z = eastNode.getCoords().getRow();
 		modelInstance.transform.getScale(auxVector3_2);
 		modelInstance.transform.setToTranslationAndScaling(auxVector3_1, auxVector3_2);
 		modelInstance.transform.rotate(Vector3.Y, (eastHigherThanWest ? -1 : 1) * 90F);
@@ -203,8 +207,8 @@ public class WallCreator implements Disposable {
 	public void adjustNorthWall(final MapNodeData southernNode,
 								final MapNodeData northernNode) {
 		if (northernNode.getHeight() != southernNode.getHeight()) {
-			if (northernNode.getSouthWall() == null && southernNode.getNorthWall() == null) {
-				southernNode.setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, MISSING));
+			if (northernNode.getWalls().getSouthWall() == null && southernNode.getWalls().getNorthWall() == null) {
+				southernNode.getWalls().setNorthWall(createNorthWall(southernNode, wallModel, assetsManager, MISSING));
 			}
 			adjustWallBetweenNorthAndSouth(southernNode, northernNode);
 		} else {
@@ -215,8 +219,8 @@ public class WallCreator implements Disposable {
 	public void adjustSouthWall(final MapNodeData northernNode,
 								final MapNodeData southernNode) {
 		if (northernNode.getHeight() != southernNode.getHeight()) {
-			if (southernNode.getNorthWall() == null && northernNode.getSouthWall() == null) {
-				northernNode.setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, MISSING));
+			if (southernNode.getWalls().getNorthWall() == null && northernNode.getWalls().getSouthWall() == null) {
+				northernNode.getWalls().setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, MISSING));
 			}
 			adjustWallBetweenNorthAndSouth(southernNode, northernNode, 0);
 		} else {
@@ -228,8 +232,8 @@ public class WallCreator implements Disposable {
 							   final MapNodeData easternNode) {
 		if (easternNode.getHeight() != westernNode.getHeight()) {
 			boolean hasJustBeenCreated = false;
-			if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
-				westernNode.setEastWall(createEastWall(westernNode, wallModel, assetsManager, MISSING));
+			if (westernNode.getWalls().getEastWall() == null && easternNode.getWalls().getWestWall() == null) {
+				westernNode.getWalls().setEastWall(createEastWall(westernNode, wallModel, assetsManager, MISSING));
 				hasJustBeenCreated = true;
 			}
 			adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
@@ -239,20 +243,20 @@ public class WallCreator implements Disposable {
 	}
 
 	private void clearWallBetweenWestAndEastNodes(MapNodeData westernNode, MapNodeData easternNode) {
-		easternNode.setWestWall(null);
-		westernNode.setEastWall(null);
+		easternNode.getWalls().setWestWall(null);
+		westernNode.getWalls().setEastWall(null);
 	}
 
 	private void clearWallBetweenNorthAndSouthNodes(MapNodeData northernNode, MapNodeData southernNode) {
-		southernNode.setNorthWall(null);
-		northernNode.setSouthWall(null);
+		southernNode.getWalls().setNorthWall(null);
+		northernNode.getWalls().setSouthWall(null);
 	}
 
 	public void adjustWestWall(final MapNodeData easternNode, final MapNodeData westernNode) {
 		if (easternNode.getHeight() != westernNode.getHeight()) {
 			boolean hasJustBeenCreated = false;
-			if (westernNode.getEastWall() == null && easternNode.getWestWall() == null) {
-				easternNode.setWestWall(createWestWall(easternNode, wallModel, assetsManager, MISSING));
+			if (westernNode.getWalls().getEastWall() == null && easternNode.getWalls().getWestWall() == null) {
+				easternNode.getWalls().setWestWall(createWestWall(easternNode, wallModel, assetsManager, MISSING));
 				hasJustBeenCreated = true;
 			}
 			adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
