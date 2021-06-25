@@ -9,7 +9,7 @@ public enum SpriteType {
 	IDLE(0.4f, Animation.PlayMode.LOOP_PINGPONG),
 	RUN(0.07f),
 	ATTACK(0.07f, Animation.PlayMode.NORMAL),
-	PAIN(0.2F),
+	PAIN(0.2F, Animation.PlayMode.NORMAL),
 	PICKUP(0.2f, Animation.PlayMode.NORMAL, false, true),
 	LIGHT_DEATH_1(0.07f, Animation.PlayMode.NORMAL, true, false, true),
 	LIGHT_DEATH_2(0.07f, Animation.PlayMode.NORMAL, true, false, true),
