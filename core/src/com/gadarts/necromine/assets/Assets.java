@@ -16,6 +16,9 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static com.gadarts.necromine.assets.definitions.SoundDefinition.*;
 
 /**
  * Definitions of the game content.
@@ -24,7 +27,7 @@ public final class Assets {
 
 	public static final String PATH_SEPARATOR = "/";
 
-	private Assets() {
+	private Assets( ) {
 	}
 
 	@Getter
@@ -59,7 +62,7 @@ public final class Assets {
 		private final String filePath;
 		private final WeaponsDefinitions relatedWeapon;
 
-		Atlases() {
+		Atlases( ) {
 			this(null);
 		}
 
@@ -82,17 +85,17 @@ public final class Assets {
 		}
 
 		@Override
-		public AssetLoaderParameters<Texture> getParameters() {
+		public AssetLoaderParameters<Texture> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<TextureAtlas> getTypeClass() {
+		public Class<TextureAtlas> getTypeClass( ) {
 			return TextureAtlas.class;
 		}
 
 		@Override
-		public String getName() {
+		public String getName( ) {
 			return name();
 		}
 	}
@@ -105,17 +108,17 @@ public final class Assets {
 		TEST;
 		private final String filePath;
 
-		Melody() {
+		Melody( ) {
 			this.filePath = MelodyDefinition.FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + MelodyDefinition.FORMAT;
 		}
 
 		@Override
-		public AssetLoaderParameters<Music> getParameters() {
+		public AssetLoaderParameters<Music> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<Music> getTypeClass() {
+		public Class<Music> getTypeClass( ) {
 			return Music.class;
 		}
 	}
@@ -132,17 +135,17 @@ public final class Assets {
 
 		private final String filePath;
 
-		Shaders() {
+		Shaders( ) {
 			this.filePath = FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FORMAT;
 		}
 
 		@Override
-		public AssetLoaderParameters<String> getParameters() {
+		public AssetLoaderParameters<String> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<String> getTypeClass() {
+		public Class<String> getTypeClass( ) {
 			return String.class;
 		}
 	}
@@ -182,17 +185,17 @@ public final class Assets {
 		}
 
 		@Override
-		public String getAssetManagerKey() {
+		public String getAssetManagerKey( ) {
 			return filename + "_" + params.fontParameters.size + "." + FontDefinition.FORMAT;
 		}
 
 		@Override
-		public AssetLoaderParameters<BitmapFont> getParameters() {
+		public AssetLoaderParameters<BitmapFont> getParameters( ) {
 			return params;
 		}
 
 		@Override
-		public Class<BitmapFont> getTypeClass() {
+		public Class<BitmapFont> getTypeClass( ) {
 			return BitmapFont.class;
 		}
 	}
@@ -205,14 +208,14 @@ public final class Assets {
 		STEP_1,
 		STEP_2,
 		STEP_3,
-		ENEMY_ROAM,
-		ENEMY_AWAKE,
-		ENEMY_PAIN,
-		ENEMY_DEATH,
-		ATTACK_CLAW,
-		ATTACK_AXE_PICK,
+		ENEMY_ROAM("enemy_roam_1", "enemy_roam_2", "enemy_roam_3"),
+		ENEMY_AWAKE("enemy_awake_1", "enemy_awake_2", "enemy_awake_3"),
+		ENEMY_PAIN("enemy_pain_1", "enemy_pain_2", "enemy_pain_3"),
+		ENEMY_DEATH("enemy_death_1", "enemy_death_2", "enemy_death_3"),
+		ATTACK_FIST,
 		ATTACK_COLT,
 		ATTACK_HAMMER,
+		ATTACK_KNIFE,
 		PICKUP,
 		PLAYER_PAIN,
 		PLAYER_DEATH,
@@ -224,8 +227,9 @@ public final class Assets {
 		private final String filePath;
 		private final boolean randomPitch;
 		private final boolean loop;
+		private final String[] files;
 
-		Sounds() {
+		Sounds( ) {
 			this(true);
 		}
 
@@ -234,18 +238,33 @@ public final class Assets {
 		}
 
 		Sounds(final boolean randomPitch, final boolean loop) {
-			this.filePath = SoundDefinition.FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + SoundDefinition.FORMAT;
+			this(randomPitch, loop, new String[0]);
+		}
+
+		Sounds(final boolean randomPitch, final boolean loop, String... files) {
+			this.filePath = FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FORMAT;
 			this.randomPitch = randomPitch;
 			this.loop = loop;
+			this.files = files;
+			IntStream.range(0, files.length).forEach(i -> files[i] = FOLDER + PATH_SEPARATOR + files[i] + "." + FORMAT);
+		}
+
+		Sounds(String... files) {
+			this(true, false, files);
 		}
 
 		@Override
-		public AssetLoaderParameters<Sound> getParameters() {
+		public String[] getFilesList( ) {
+			return files;
+		}
+
+		@Override
+		public AssetLoaderParameters<Sound> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<Sound> getTypeClass() {
+		public Class<Sound> getTypeClass( ) {
 			return Sound.class;
 		}
 	}
@@ -273,7 +292,7 @@ public final class Assets {
 		private final float alpha;
 		private Color skipColor;
 
-		Models() {
+		Models( ) {
 			this(1.0f);
 		}
 
@@ -288,12 +307,12 @@ public final class Assets {
 		}
 
 		@Override
-		public AssetLoaderParameters<Model> getParameters() {
+		public AssetLoaderParameters<Model> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<Model> getTypeClass() {
+		public Class<Model> getTypeClass( ) {
 			return Model.class;
 		}
 	}
@@ -310,7 +329,7 @@ public final class Assets {
 			this.definitions = definitions;
 		}
 
-		public static TextureDefinition[] getAllDefinitionsInSingleArray() {
+		public static TextureDefinition[] getAllDefinitionsInSingleArray( ) {
 			ArrayList<TextureDefinition> list = new ArrayList<>();
 			Arrays.stream(values()).forEach(defs -> list.addAll(Arrays
 					.stream(defs.getDefinitions())
@@ -346,22 +365,22 @@ public final class Assets {
 			this.textureWrap = textureWrap;
 		}
 
-		SurfaceTextures() {
+		SurfaceTextures( ) {
 			this(Texture.TextureWrap.Repeat);
 		}
 
 		@Override
-		public String getSubFolderName() {
+		public String getSubFolderName( ) {
 			return "floors";
 		}
 
 		@Override
-		public String getName() {
+		public String getName( ) {
 			return name();
 		}
 
 		@Override
-		public AssetLoaderParameters<Texture> getParameters() {
+		public AssetLoaderParameters<Texture> getParameters( ) {
 			return null;
 		}
 	}
@@ -380,7 +399,7 @@ public final class Assets {
 		BUTTON_CLOSE_DOWN(null, "buttons"),
 		BUTTON_CLOSE_HOVER(null, "buttons"),
 		NINEPATCHES("ninepatches.9"),
-		WEAPON_AXE_PICK(null, "weapons"),
+		WEAPON_KNIFE(null, "weapons"),
 		WEAPON_HAMMER(null, "weapons"),
 		WEAPON_COLT(null, "weapons"),
 		PLAYER_LAYOUT,
@@ -398,7 +417,7 @@ public final class Assets {
 		private final String specialFileName;
 		private final String subSubFolder;
 
-		UiTextures() {
+		UiTextures( ) {
 			this(null);
 		}
 
@@ -412,17 +431,17 @@ public final class Assets {
 		}
 
 		@Override
-		public String getSubFolderName() {
+		public String getSubFolderName( ) {
 			return subSubFolder != null ? SUB_FOLDER_NAME + PATH_SEPARATOR + subSubFolder : SUB_FOLDER_NAME;
 		}
 
 		@Override
-		public String getName() {
+		public String getName( ) {
 			return specialFileName != null ? specialFileName : name();
 		}
 
 		@Override
-		public AssetLoaderParameters<Texture> getParameters() {
+		public AssetLoaderParameters<Texture> getParameters( ) {
 			return null;
 		}
 	}

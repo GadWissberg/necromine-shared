@@ -6,13 +6,13 @@ import lombok.Getter;
 
 @Getter
 public enum WeaponsDefinitions implements ItemDefinition {
-	AXE_PICK(4, 5, 4, Assets.UiTextures.WEAPON_AXE_PICK, Assets.Sounds.ATTACK_AXE_PICK, new int[]{
+	AXE_PICK(4, 5, 4, Assets.UiTextures.WEAPON_KNIFE, Assets.Sounds.ATTACK_KNIFE, new int[]{
 			1, 1, 1, 1,
 			0, 1, 0, 0,
 			0, 1, 0, 0,
 			0, 1, 0, 0,
 			0, 1, 0, 0,
-	}, true, "Axe-Pick"),
+	}, true, "Knife"),
 	COLT(2, 2, 2, Assets.UiTextures.WEAPON_COLT, Assets.Sounds.ATTACK_COLT, new int[]{
 			1, 1,
 			1, 0
@@ -89,38 +89,38 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	}
 
 	@Override
-	public int getWidth() {
+	public int getWidth( ) {
 		return width;
 	}
 
 	@Override
-	public int[] getMask() {
+	public int[] getMask( ) {
 		return mask;
 	}
 
 	@Override
-	public int getHeight() {
+	public int getHeight( ) {
 		return height;
 	}
 
 	@Override
-	public int getId() {
+	public int getId( ) {
 		return ordinal() + 1;
 	}
 
 	@Override
-	public Assets.UiTextures getImage() {
+	public Assets.UiTextures getImage( ) {
 		return image;
 	}
 
 
 	@Override
-	public String getDisplayName() {
+	public String getDisplayName( ) {
 		return displayName;
 	}
 
 	@Override
-	public Assets.Models getModelDefinition() {
+	public Assets.Models getModelDefinition( ) {
 		return modelDef;
 	}
 }

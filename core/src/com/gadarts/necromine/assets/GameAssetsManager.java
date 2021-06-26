@@ -31,7 +31,7 @@ import java.util.Optional;
 public class GameAssetsManager extends AssetManager {
 	private final String assetsLocation;
 
-	public GameAssetsManager() {
+	public GameAssetsManager( ) {
 		this("");
 	}
 
@@ -51,23 +51,36 @@ public class GameAssetsManager extends AssetManager {
 		Arrays.stream(Assets.AssetsTypes.values())
 				.filter(type -> Arrays.stream(assetsTypesToExclude).noneMatch(toExclude -> toExclude == type))
 				.forEach(type -> Arrays.stream(type.getAssetDefinitions()).forEach(def -> {
-					String filePath = assetsLocation + def.getFilePath();
-					String path = Gdx.files.getFileHandle(filePath, FileType.Internal).path();
-					Class<?> typeClass = def.getTypeClass();
-					if (Optional.ofNullable(def.getParameters()).isPresent()) {
-						String assetManagerKey = def.getAssetManagerKey();
-						load(assetManagerKey != null ? assetManagerKey : path, typeClass, def.getParameters());
+					String[] filesList = def.getFilesList();
+					if (filesList.length == 0) {
+						loadFile(def);
 					} else {
-						load(path, typeClass);
+						Arrays.stream(filesList).forEach(file -> loadFile(def, file));
 					}
 				}));
 		finishLoading();
 	}
 
+	private void loadFile(com.gadarts.necromine.assets.definitions.AssetDefinition def) {
+		loadFile(def, def.getFilePath());
+	}
+
+	private void loadFile(com.gadarts.necromine.assets.definitions.AssetDefinition def, String fileName) {
+		String filePath = assetsLocation + fileName;
+		String path = Gdx.files.getFileHandle(filePath, FileType.Internal).path();
+		Class<?> typeClass = def.getTypeClass();
+		if (Optional.ofNullable(def.getParameters()).isPresent()) {
+			String assetManagerKey = def.getAssetManagerKey();
+			load(assetManagerKey != null ? assetManagerKey : path, typeClass, def.getParameters());
+		} else {
+			load(path, typeClass);
+		}
+	}
+
 	/**
 	 * Sets repeat value wrap for all loaded textures.
 	 */
-	public void applyRepeatWrapOnAllTextures() {
+	public void applyRepeatWrapOnAllTextures( ) {
 		Array<Texture> textures = new Array<>();
 		getAll(Texture.class, textures);
 		textures.forEach(texture -> texture.setWrap(TextureWrap.Repeat, TextureWrap.Repeat));
@@ -103,7 +116,11 @@ public class GameAssetsManager extends AssetManager {
 	}
 
 	public Sound getSound(final Assets.Sounds sound) {
-		return get(assetsLocation + sound.getFilePath(), Sound.class);
+		return getSound(sound.getFilePath());
+	}
+
+	public Sound getSound(String filePath) {
+		return get(assetsLocation + filePath, Sound.class);
 	}
 
 	public String getShader(final Assets.Shaders shaders) {
