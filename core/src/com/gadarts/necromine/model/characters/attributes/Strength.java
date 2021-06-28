@@ -1,4 +1,4 @@
-package com.gadarts.necromine.model.characters;
+package com.gadarts.necromine.model.characters.attributes;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
