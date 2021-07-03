@@ -18,8 +18,6 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static com.gadarts.necromine.assets.definitions.SoundDefinition.*;
-
 /**
  * Definitions of the game content.
  */
@@ -54,7 +52,7 @@ public final class Assets {
 	@Getter
 	public enum Atlases implements AtlasDefinition {
 		PLAYER_GENERIC,
-		PLAYER_KNIFE(WeaponsDefinitions.AXE_PICK),
+		PLAYER_KNIFE(WeaponsDefinitions.KNIFE),
 		PLAYER_COLT(WeaponsDefinitions.COLT),
 		ANUBIS,
 		FLAME;

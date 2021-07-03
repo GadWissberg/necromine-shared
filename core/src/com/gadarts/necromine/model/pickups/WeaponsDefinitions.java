@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 public enum WeaponsDefinitions implements ItemDefinition {
-	AXE_PICK(4, 5, 4, Assets.UiTextures.WEAPON_KNIFE, Assets.Sounds.ATTACK_KNIFE, new int[]{
+	KNIFE(4, 5, 4, Assets.UiTextures.WEAPON_KNIFE, Assets.Sounds.ATTACK_KNIFE, new int[]{
 			1, 1, 1, 1,
 			0, 1, 0, 0,
 			0, 1, 0, 0,

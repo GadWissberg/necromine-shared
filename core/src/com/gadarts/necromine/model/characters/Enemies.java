@@ -21,7 +21,8 @@ public enum Enemies implements CharacterDefinition {
 			List.of(2, 2, 2, 3, 3),
 			List.of(Accuracy.NONE, Accuracy.LOW, Accuracy.LOW, Accuracy.MED, Accuracy.MED),
 			List.of(Range.NONE, Range.MED, Range.MED, Range.MED, Range.HIGH),
-			List.of(ReloadTime.NONE, ReloadTime.MED, ReloadTime.MED, ReloadTime.MED, ReloadTime.MED));
+			List.of(ReloadTime.NONE, ReloadTime.MED, ReloadTime.MED, ReloadTime.MED, ReloadTime.MED),
+			EnemyWeaponsDefinitions.ENERGY_BALL);
 
 	private final String displayName;
 	private final Assets.Sounds attackSound;
@@ -32,6 +33,7 @@ public enum Enemies implements CharacterDefinition {
 	private final List<Accuracy> accuracy;
 	private final List<Range> range;
 	private final List<ReloadTime> reloadTime;
+	private final EnemyWeaponsDefinitions primaryAttack;
 
 
 	@Override
