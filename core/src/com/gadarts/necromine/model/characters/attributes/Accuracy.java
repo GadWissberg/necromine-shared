@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum Accuracy {
-	NONE(0), LOW(35), MED(15), HIGH(5);
+	NONE(0), LOW(13), MED(10), HIGH(8);
 
 	private final int maxAngle;
 

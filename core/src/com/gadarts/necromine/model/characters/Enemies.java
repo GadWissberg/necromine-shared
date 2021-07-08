@@ -19,7 +19,7 @@ public enum Enemies implements CharacterDefinition {
 			List.of(LOW, MED, MED, HIGH, HIGH),
 			List.of(Strength.of(1), Strength.of(1), Strength.of(1), Strength.of(1, 2), Strength.of(1, 2)),
 			List.of(2, 2, 2, 3, 3),
-			List.of(Accuracy.NONE, Accuracy.LOW, Accuracy.LOW, Accuracy.MED, Accuracy.MED),
+			new Accuracy[]{Accuracy.NONE, Accuracy.HIGH, Accuracy.LOW, Accuracy.MED, Accuracy.MED},
 			List.of(Range.NONE, Range.MED, Range.MED, Range.MED, Range.HIGH),
 			List.of(ReloadTime.NONE, ReloadTime.MED, ReloadTime.MED, ReloadTime.MED, ReloadTime.MED),
 			EnemyWeaponsDefinitions.ENERGY_BALL,
@@ -32,7 +32,7 @@ public enum Enemies implements CharacterDefinition {
 	private final List<Agility> agility;
 	private final List<Strength> strength;
 	private final List<Integer> health;
-	private final List<Accuracy> accuracy;
+	private final Accuracy[] accuracy;
 	private final List<Range> range;
 	private final List<ReloadTime> reloadTime;
 	private final EnemyWeaponsDefinitions primaryAttack;

@@ -6,15 +6,15 @@ import lombok.Getter;
 
 @Getter
 public enum SpriteType {
-	IDLE(0.4f, Animation.PlayMode.LOOP_PINGPONG),
-	RUN(0.07f),
-	ATTACK(0.07f, Animation.PlayMode.NORMAL),
-	ATTACK_PRIMARY(0.07f, Animation.PlayMode.NORMAL),
-	PAIN(0.2F, Animation.PlayMode.NORMAL),
-	PICKUP(0.2f, Animation.PlayMode.NORMAL, false, true),
-	LIGHT_DEATH_1(0.07f, Animation.PlayMode.NORMAL, true, false, true),
-	LIGHT_DEATH_2(0.07f, Animation.PlayMode.NORMAL, true, false, true),
-	LIGHT_DEATH_3(0.07f, Animation.PlayMode.NORMAL, true, false, true);
+	IDLE(0.3f, Animation.PlayMode.LOOP_PINGPONG),
+	RUN(0.06f),
+	ATTACK(0.06f, Animation.PlayMode.NORMAL),
+	ATTACK_PRIMARY(0.06f, Animation.PlayMode.NORMAL),
+	PAIN(0.1F, Animation.PlayMode.NORMAL),
+	PICKUP(0.1f, Animation.PlayMode.NORMAL, false, true),
+	LIGHT_DEATH_1(0.06f, Animation.PlayMode.NORMAL, true, false, true),
+	LIGHT_DEATH_2(0.06f, Animation.PlayMode.NORMAL, true, false, true),
+	LIGHT_DEATH_3(0.06f, Animation.PlayMode.NORMAL, true, false, true);
 
 	private final float animationDuration;
 	private final Animation.PlayMode playMode;
