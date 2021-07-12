@@ -6,12 +6,9 @@ import lombok.Getter;
 
 @Getter
 public enum WeaponsDefinitions implements ItemDefinition {
-	KNIFE(4, 5, 4, Assets.UiTextures.WEAPON_KNIFE, Assets.Sounds.ATTACK_KNIFE, new int[]{
-			1, 1, 1, 1,
-			0, 1, 0, 0,
-			0, 1, 0, 0,
-			0, 1, 0, 0,
-			0, 1, 0, 0,
+	KNIFE(1, 2, 4, Assets.UiTextures.WEAPON_KNIFE, Assets.Sounds.ATTACK_KNIFE, new int[]{
+			1,
+			1,
 	}, true, "Knife"),
 	COLT(2, 2, 2, Assets.UiTextures.WEAPON_COLT, Assets.Sounds.ATTACK_COLT, new int[]{
 			1, 1,
@@ -57,25 +54,25 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	}
 
 	WeaponsDefinitions(final int width,
-					   final int depth,
+					   final int height,
 					   final int hitFrameIndex,
 					   final Assets.UiTextures image,
 					   final Assets.Sounds attackSound,
 					   final int[] mask,
 					   final boolean melee,
 					   final String displayName) {
-		this(width, depth, hitFrameIndex, image, attackSound, mask, melee, displayName, null);
+		this(width, height, hitFrameIndex, image, attackSound, mask, melee, displayName, null);
 	}
 
 	WeaponsDefinitions(final int width,
-					   final int depth,
+					   final int height,
 					   final int hitFrameIndex,
 					   final Assets.UiTextures image,
 					   final Assets.Sounds attackSound,
 					   final int[] mask,
 					   final String displayName,
 					   final Assets.Models model) {
-		this(width, depth, hitFrameIndex, image, attackSound, mask, false, displayName, model);
+		this(width, height, hitFrameIndex, image, attackSound, mask, false, displayName, model);
 	}
 
 	private int[] flipMatrixVertically(final int[] mask) {
