@@ -13,7 +13,7 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	COLT(2, 2, 2, Assets.UiTextures.WEAPON_COLT, Assets.Sounds.ATTACK_COLT, new int[]{
 			1, 1,
 			1, 0
-	}, "Colt M1911", Assets.Models.COLT);
+	}, "Colt M1911", Assets.Models.COLT, true, 1);
 
 	@Getter(AccessLevel.NONE)
 	private final int width;
@@ -32,26 +32,8 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	private final int hitFrameIndex;
 	private final String displayName;
 	private final Assets.Models modelDef;
-
-	WeaponsDefinitions(final int width,
-					   final int height,
-					   final int hitFrameIndex,
-					   final Assets.UiTextures image,
-					   final Assets.Sounds attackSound,
-					   final int[] mask,
-					   final boolean melee,
-					   final String displayName,
-					   final Assets.Models model) {
-		this.width = width;
-		this.height = height;
-		this.hitFrameIndex = hitFrameIndex;
-		this.image = image;
-		this.attackSound = attackSound;
-		this.mask = flipMatrixVertically(mask);
-		this.melee = melee;
-		this.displayName = displayName;
-		this.modelDef = model;
-	}
+	private final boolean hitScan;
+	private final int damage;
 
 	WeaponsDefinitions(final int width,
 					   final int height,
@@ -61,7 +43,7 @@ public enum WeaponsDefinitions implements ItemDefinition {
 					   final int[] mask,
 					   final boolean melee,
 					   final String displayName) {
-		this(width, height, hitFrameIndex, image, attackSound, mask, melee, displayName, null);
+		this(width, height, hitFrameIndex, image, attackSound, mask, melee, displayName, null, false, 0);
 	}
 
 	WeaponsDefinitions(final int width,
@@ -71,8 +53,34 @@ public enum WeaponsDefinitions implements ItemDefinition {
 					   final Assets.Sounds attackSound,
 					   final int[] mask,
 					   final String displayName,
-					   final Assets.Models model) {
-		this(width, height, hitFrameIndex, image, attackSound, mask, false, displayName, model);
+					   final Assets.Models model,
+					   final boolean hitScan,
+					   final int damage) {
+		this(width, height, hitFrameIndex, image, attackSound, mask, false, displayName, model, hitScan, damage);
+	}
+
+	WeaponsDefinitions(final int width,
+					   final int height,
+					   final int hitFrameIndex,
+					   final Assets.UiTextures image,
+					   final Assets.Sounds attackSound,
+					   final int[] mask,
+					   final boolean melee,
+					   final String displayName,
+					   final Assets.Models model,
+					   final boolean hitScan,
+					   final int damage) {
+		this.width = width;
+		this.height = height;
+		this.hitFrameIndex = hitFrameIndex;
+		this.image = image;
+		this.attackSound = attackSound;
+		this.mask = flipMatrixVertically(mask);
+		this.melee = melee;
+		this.displayName = displayName;
+		this.modelDef = model;
+		this.hitScan = hitScan;
+		this.damage = damage;
 	}
 
 	private int[] flipMatrixVertically(final int[] mask) {
