@@ -4,6 +4,9 @@ import com.gadarts.necromine.assets.Assets;
 import lombok.AccessLevel;
 import lombok.Getter;
 
+/**
+ * Player's weapons definitions.
+ */
 @Getter
 public enum WeaponsDefinitions implements ItemDefinition {
 	KNIFE(1, 2, 4, Assets.UiTextures.WEAPON_KNIFE, Assets.Sounds.ATTACK_KNIFE, new int[]{

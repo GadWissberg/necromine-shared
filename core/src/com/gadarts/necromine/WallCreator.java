@@ -119,7 +119,7 @@ public class WallCreator implements Disposable {
 	 * @param wallModel     The wall model used for creating the model instance.
 	 * @param assetsManager Used to get the texture.
 	 * @param definition    The texture definition for the wall.
-	 * @return
+	 * @return The new wall.
 	 */
 	public static Wall createWall(final Model wallModel,
 								  final GameAssetsManager assetsManager,
