@@ -14,7 +14,7 @@ public enum NPCs implements CharacterDefinition {
 	public CharacterTypes getCharacterType() {
 		return CharacterTypes.NPC;
 	}
-
+	
 	@Override
 	public Assets.Atlases getAtlasDefinition() {
 		return null;

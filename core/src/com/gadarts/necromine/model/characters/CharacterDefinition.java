@@ -5,6 +5,8 @@ import com.gadarts.necromine.model.ElementDefinition;
 
 public interface CharacterDefinition extends ElementDefinition {
 	CharacterTypes getCharacterType();
+	
+	String name();
 
 	Assets.Atlases getAtlasDefinition();
 }

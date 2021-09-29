@@ -79,7 +79,7 @@ public enum Enemies implements CharacterDefinition {
 	public CharacterTypes getCharacterType() {
 		return CharacterTypes.ENEMY;
 	}
-
+	
 	@Override
 	public Atlases getAtlasDefinition() {
 		return atlasDefinition;

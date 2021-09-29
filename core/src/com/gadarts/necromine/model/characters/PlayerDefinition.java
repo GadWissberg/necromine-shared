@@ -8,7 +8,7 @@ public class PlayerDefinition implements CharacterDefinition {
 	public String getDisplayName() {
 		return "Player";
 	}
-
+	
 	@Override
 	public String toString() {
 		return getDisplayName();
@@ -17,6 +17,11 @@ public class PlayerDefinition implements CharacterDefinition {
 	@Override
 	public CharacterTypes getCharacterType() {
 		return CharacterTypes.PLAYER;
+	}
+
+	@Override
+	public String name() {
+		return "player";
 	}
 
 	@Override
