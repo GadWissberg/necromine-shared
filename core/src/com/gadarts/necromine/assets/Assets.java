@@ -54,6 +54,7 @@ public final class Assets {
 		PLAYER_GENERIC,
 		PLAYER_KNIFE(WeaponsDefinitions.KNIFE),
 		PLAYER_COLT(WeaponsDefinitions.COLT),
+		SCORPION,
 		ANUBIS,
 		FLAME;
 

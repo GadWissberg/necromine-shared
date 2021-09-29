@@ -13,6 +13,13 @@ import static com.gadarts.necromine.model.characters.attributes.Agility.*;
 @Getter
 @RequiredArgsConstructor
 public enum Enemies implements CharacterDefinition {
+	SCORPION("Scorpion",
+			Assets.Sounds.ATTACK_FIST,
+			Atlases.SCORPION,
+			List.of(LOW, LOW, LOW, MED, MED),
+			List.of(Strength.of(1), Strength.of(1), Strength.of(1), Strength.of(1, 2), Strength.of(1, 2)),
+			List.of(1, 1, 2, 2, 2),
+			1),
 	ANUBIS("Anubis Zealot",
 			Assets.Sounds.ATTACK_FIST,
 			Atlases.ANUBIS,
@@ -25,6 +32,24 @@ public enum Enemies implements CharacterDefinition {
 			EnemyWeaponsDefinitions.ENERGY_BALL,
 			4,
 			5);
+
+	Enemies(final String displayName,
+			final Assets.Sounds attackSound,
+			final Atlases atlasDefinition,
+			final List<Agility> agility,
+			final List<Strength> strength,
+			final List<Integer> health,
+			final int meleeHitFrameIndex) {
+		this(
+				displayName,
+				attackSound,
+				atlasDefinition,
+				agility,
+				strength,
+				health,
+				null, null, null, null,
+				meleeHitFrameIndex, 0);
+	}
 
 	private final String displayName;
 	private final Assets.Sounds attackSound;
@@ -41,22 +66,22 @@ public enum Enemies implements CharacterDefinition {
 
 
 	@Override
-	public String toString( ) {
+	public String toString() {
 		return getDisplayName();
 	}
 
 	@Override
-	public String getDisplayName( ) {
+	public String getDisplayName() {
 		return displayName;
 	}
 
 	@Override
-	public CharacterTypes getCharacterType( ) {
+	public CharacterTypes getCharacterType() {
 		return CharacterTypes.ENEMY;
 	}
 
 	@Override
-	public Atlases getAtlasDefinition( ) {
+	public Atlases getAtlasDefinition() {
 		return atlasDefinition;
 	}
 }
