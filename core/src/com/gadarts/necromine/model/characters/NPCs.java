@@ -14,7 +14,22 @@ public enum NPCs implements CharacterDefinition {
 	public CharacterTypes getCharacterType() {
 		return CharacterTypes.NPC;
 	}
-	
+
+	@Override
+	public boolean isSingleDeathAnimation() {
+		return false;
+	}
+
+	@Override
+	public int getMeleeHitFrameIndex() {
+		return 0;
+	}
+
+	@Override
+	public int getPrimaryAttackHitFrameIndex() {
+		return 0;
+	}
+
 	@Override
 	public Assets.Atlases getAtlasDefinition() {
 		return null;

@@ -19,7 +19,7 @@ public enum Enemies implements CharacterDefinition {
 			List.of(LOW, LOW, LOW, MED, MED),
 			List.of(Strength.of(1), Strength.of(1), Strength.of(1), Strength.of(1, 2), Strength.of(1, 2)),
 			List.of(1, 1, 2, 2, 2),
-			1),
+			1, true),
 	ANUBIS("Anubis Zealot",
 			Assets.Sounds.ATTACK_FIST,
 			Atlases.ANUBIS,
@@ -31,25 +31,8 @@ public enum Enemies implements CharacterDefinition {
 			List.of(ReloadTime.NONE, ReloadTime.MED, ReloadTime.MED, ReloadTime.MED, ReloadTime.MED),
 			EnemyWeaponsDefinitions.ENERGY_BALL,
 			4,
-			5);
-
-	Enemies(final String displayName,
-			final Assets.Sounds attackSound,
-			final Atlases atlasDefinition,
-			final List<Agility> agility,
-			final List<Strength> strength,
-			final List<Integer> health,
-			final int meleeHitFrameIndex) {
-		this(
-				displayName,
-				attackSound,
-				atlasDefinition,
-				agility,
-				strength,
-				health,
-				null, null, null, null,
-				meleeHitFrameIndex, 0);
-	}
+			5,
+			false);
 
 	private final String displayName;
 	private final Assets.Sounds attackSound;
@@ -63,7 +46,27 @@ public enum Enemies implements CharacterDefinition {
 	private final EnemyWeaponsDefinitions primaryAttack;
 	private final int meleeHitFrameIndex;
 	private final int primaryAttackHitFrameIndex;
+	private final boolean singleDeathAnimation;
 
+	Enemies(final String displayName,
+			final Assets.Sounds attackSound,
+			final Atlases atlasDefinition,
+			final List<Agility> agility,
+			final List<Strength> strength,
+			final List<Integer> health,
+			final int meleeHitFrameIndex,
+			final boolean singleDeathAnimation) {
+		this(
+				displayName,
+				attackSound,
+				atlasDefinition,
+				agility,
+				strength,
+				health,
+				null, null, null, null,
+				meleeHitFrameIndex, 0,
+				singleDeathAnimation);
+	}
 
 	@Override
 	public String toString() {
@@ -79,7 +82,12 @@ public enum Enemies implements CharacterDefinition {
 	public CharacterTypes getCharacterType() {
 		return CharacterTypes.ENEMY;
 	}
-	
+
+	@Override
+	public boolean isSingleDeathAnimation() {
+		return singleDeathAnimation;
+	}
+
 	@Override
 	public Atlases getAtlasDefinition() {
 		return atlasDefinition;

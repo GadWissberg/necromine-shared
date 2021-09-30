@@ -20,8 +20,23 @@ public class PlayerDefinition implements CharacterDefinition {
 	}
 
 	@Override
+	public boolean isSingleDeathAnimation() {
+		return true;
+	}
+
+	@Override
 	public String name() {
 		return "player";
+	}
+
+	@Override
+	public int getMeleeHitFrameIndex() {
+		return 4;
+	}
+
+	@Override
+	public int getPrimaryAttackHitFrameIndex() {
+		return 4;
 	}
 
 	@Override
