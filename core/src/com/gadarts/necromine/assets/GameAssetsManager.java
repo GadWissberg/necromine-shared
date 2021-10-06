@@ -16,9 +16,11 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleEffect;
 import com.badlogic.gdx.utils.Array;
 import com.gadarts.necromine.assets.definitions.AtlasDefinition;
 import com.gadarts.necromine.assets.definitions.FontDefinition;
+import com.gadarts.necromine.assets.definitions.ParticleDefinition;
 import com.gadarts.necromine.assets.definitions.TextureDefinition;
 import com.gadarts.necromine.assets.loaders.ShaderLoader;
 
@@ -101,6 +103,10 @@ public class GameAssetsManager extends AssetManager {
 
 	public TextureAtlas getAtlas(final AtlasDefinition atlas) {
 		return get(assetsLocation + atlas.getFilePath(), TextureAtlas.class);
+	}
+
+	public ParticleEffect getParticleEffect(final ParticleDefinition particle) {
+		return get(assetsLocation + particle.getFilePath(), ParticleEffect.class);
 	}
 
 	public Model getModel(final com.gadarts.necromine.assets.definitions.ModelDefinition model) {

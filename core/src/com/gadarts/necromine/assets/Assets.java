@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleEffect;
 import com.gadarts.necromine.assets.definitions.*;
 import com.gadarts.necromine.model.pickups.WeaponsDefinitions;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public final class Assets {
 		MODEL(Models.values()),
 		SHADER(Shaders.values()),
 		TEXTURE(TexturesTypes.getAllDefinitionsInSingleArray()),
+		PARTICLES(Particles.values()),
 		FONT(Fonts.values());
 
 		private final AssetDefinition[] assetDefinitions;
@@ -148,6 +150,40 @@ public final class Assets {
 			return String.class;
 		}
 	}
+	/**
+	 * Shader files.
+	 */
+	
+	@Getter
+	public enum Particles implements ParticleDefinition {
+		BLOOD_SPLATTER;
+		
+		private final String filePath;
+
+		Particles( ) {
+			this.filePath = FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FORMAT;
+		}
+
+		@Override
+		public AssetLoaderParameters<String> getParameters( ) {
+			return null;
+		}
+
+		@Override
+		public String getSubFolderName() {
+			return null;
+		}
+
+		@Override
+		public Class<ParticleEffect> getTypeClass( ) {
+			return ParticleEffect.class;
+		}
+
+		@Override
+		public String getName() {
+			return name();
+		}
+	}
 
 	/**
 	 * Fonts files.
@@ -240,7 +276,7 @@ public final class Assets {
 			this(randomPitch, loop, new String[0]);
 		}
 
-		Sounds(final boolean randomPitch, final boolean loop, String... files) {
+		Sounds(final boolean randomPitch, final boolean loop, final String... files) {
 			this.filePath = FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FORMAT;
 			this.randomPitch = randomPitch;
 			this.loop = loop;
@@ -248,7 +284,7 @@ public final class Assets {
 			IntStream.range(0, files.length).forEach(i -> files[i] = FOLDER + PATH_SEPARATOR + files[i] + "." + FORMAT);
 		}
 
-		Sounds(String... files) {
+		Sounds(final String... files) {
 			this(true, false, files);
 		}
 
