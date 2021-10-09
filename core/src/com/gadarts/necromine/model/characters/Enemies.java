@@ -19,7 +19,8 @@ public enum Enemies implements CharacterDefinition {
 			List.of(LOW, LOW, LOW, MED, MED),
 			List.of(Strength.of(1), Strength.of(1), Strength.of(1), Strength.of(1, 2), Strength.of(1, 2)),
 			List.of(1, 1, 2, 2, 2),
-			1, true),
+			1, true, 0.1F),
+
 	ANUBIS("Anubis Zealot",
 			Assets.Sounds.ATTACK_FIST,
 			Atlases.ANUBIS,
@@ -47,6 +48,7 @@ public enum Enemies implements CharacterDefinition {
 	private final int meleeHitFrameIndex;
 	private final int primaryAttackHitFrameIndex;
 	private final boolean singleDeathAnimation;
+	private final float height;
 
 	Enemies(final String displayName,
 			final Assets.Sounds attackSound,
@@ -55,7 +57,8 @@ public enum Enemies implements CharacterDefinition {
 			final List<Strength> strength,
 			final List<Integer> health,
 			final int meleeHitFrameIndex,
-			final boolean singleDeathAnimation) {
+			final boolean singleDeathAnimation,
+			final float height) {
 		this(
 				displayName,
 				attackSound,
@@ -65,31 +68,63 @@ public enum Enemies implements CharacterDefinition {
 				health,
 				null, null, null, null,
 				meleeHitFrameIndex, 0,
-				singleDeathAnimation);
+				singleDeathAnimation,
+				height);
 	}
 
+	Enemies(final String displayName,
+			final Assets.Sounds attackSound,
+			final Atlases atlasDefinition,
+			final List<Agility> agility,
+			final List<Strength> strength,
+			final List<Integer> health,
+			final Accuracy[] accuracy,
+			final List<Range> range,
+			final List<ReloadTime> reloadTime,
+			final EnemyWeaponsDefinitions primaryAttack,
+			final int meleeHitFrameIndex,
+			final int primaryAttackHitFrameIndex,
+			final boolean singleDeathAnimation) {
+		this(
+				displayName,
+				attackSound,
+				atlasDefinition,
+				agility,
+				strength,
+				health,
+				accuracy,
+				range,
+				reloadTime,
+				primaryAttack,
+				meleeHitFrameIndex,
+				primaryAttackHitFrameIndex,
+				singleDeathAnimation,
+				1);
+	}
+
+
 	@Override
-	public String toString() {
+	public String toString( ) {
 		return getDisplayName();
 	}
 
 	@Override
-	public String getDisplayName() {
+	public String getDisplayName( ) {
 		return displayName;
 	}
 
 	@Override
-	public CharacterTypes getCharacterType() {
+	public CharacterTypes getCharacterType( ) {
 		return CharacterTypes.ENEMY;
 	}
 
 	@Override
-	public boolean isSingleDeathAnimation() {
+	public boolean isSingleDeathAnimation( ) {
 		return singleDeathAnimation;
 	}
 
 	@Override
-	public Atlases getAtlasDefinition() {
+	public Atlases getAtlasDefinition( ) {
 		return atlasDefinition;
 	}
 }
