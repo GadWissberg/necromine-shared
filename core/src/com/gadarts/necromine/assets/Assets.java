@@ -30,7 +30,7 @@ public final class Assets {
 
 	public static final String PATH_SEPARATOR = "/";
 
-	private Assets() {
+	private Assets( ) {
 	}
 
 	@Getter
@@ -67,7 +67,7 @@ public final class Assets {
 		private final String filePath;
 		private final WeaponsDefinitions relatedWeapon;
 
-		Atlases() {
+		Atlases( ) {
 			this(null);
 		}
 
@@ -90,17 +90,17 @@ public final class Assets {
 		}
 
 		@Override
-		public AssetLoaderParameters<Texture> getParameters() {
+		public AssetLoaderParameters<Texture> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<TextureAtlas> getTypeClass() {
+		public Class<TextureAtlas> getTypeClass( ) {
 			return TextureAtlas.class;
 		}
 
 		@Override
-		public String getName() {
+		public String getName( ) {
 			return name();
 		}
 	}
@@ -113,17 +113,17 @@ public final class Assets {
 		TEST;
 		private final String filePath;
 
-		Melody() {
+		Melody( ) {
 			this.filePath = MelodyDefinition.FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + MelodyDefinition.FORMAT;
 		}
 
 		@Override
-		public AssetLoaderParameters<Music> getParameters() {
+		public AssetLoaderParameters<Music> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<Music> getTypeClass() {
+		public Class<Music> getTypeClass( ) {
 			return Music.class;
 		}
 	}
@@ -140,17 +140,17 @@ public final class Assets {
 
 		private final String filePath;
 
-		Shaders() {
+		Shaders( ) {
 			this.filePath = FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FORMAT;
 		}
 
 		@Override
-		public AssetLoaderParameters<String> getParameters() {
+		public AssetLoaderParameters<String> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<String> getTypeClass() {
+		public Class<String> getTypeClass( ) {
 			return String.class;
 		}
 	}
@@ -167,35 +167,35 @@ public final class Assets {
 		private static final PointSpriteParticleBatch pointSpriteParticleBatch = new PointSpriteParticleBatch();
 		private final String filePath;
 
-		Particles() {
+		Particles( ) {
 			this.filePath = FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FORMAT;
 		}
 
-		public static PointSpriteParticleBatch getPointSpriteParticleBatch() {
+		public static PointSpriteParticleBatch getPointSpriteParticleBatch( ) {
 			return pointSpriteParticleBatch;
 		}
 
-		public static ParticleSystem getParticleSystem() {
+		public static ParticleSystem getParticleSystem( ) {
 			return particleSystem;
 		}
 
 		@Override
-		public AssetLoaderParameters<ParticleEffect> getParameters() {
+		public AssetLoaderParameters<ParticleEffect> getParameters( ) {
 			return new ParticleEffectLoader.ParticleEffectLoadParameter(Array.with(pointSpriteParticleBatch));
 		}
 
 		@Override
-		public String getSubFolderName() {
+		public String getSubFolderName( ) {
 			return null;
 		}
 
 		@Override
-		public Class<ParticleEffect> getTypeClass() {
+		public Class<ParticleEffect> getTypeClass( ) {
 			return ParticleEffect.class;
 		}
 
 		@Override
-		public String getName() {
+		public String getName( ) {
 			return name();
 		}
 	}
@@ -235,17 +235,17 @@ public final class Assets {
 		}
 
 		@Override
-		public String getAssetManagerKey() {
+		public String getAssetManagerKey( ) {
 			return filename + "_" + params.fontParameters.size + "." + FontDefinition.FORMAT;
 		}
 
 		@Override
-		public AssetLoaderParameters<BitmapFont> getParameters() {
+		public AssetLoaderParameters<BitmapFont> getParameters( ) {
 			return params;
 		}
 
 		@Override
-		public Class<BitmapFont> getTypeClass() {
+		public Class<BitmapFont> getTypeClass( ) {
 			return BitmapFont.class;
 		}
 	}
@@ -255,16 +255,19 @@ public final class Assets {
 	 */
 	@Getter
 	public enum Sounds implements SoundDefinition {
-		STEP_1,
-		STEP_2,
-		STEP_3,
+		STEP("step_1", "step_2", "step_3"),
 		ENEMY_ROAM("enemy_roam_1", "enemy_roam_2", "enemy_roam_3"),
 		ENEMY_AWAKE("enemy_awake_1", "enemy_awake_2", "enemy_awake_3"),
 		ENEMY_PAIN("enemy_pain_1", "enemy_pain_2", "enemy_pain_3"),
 		ENEMY_DEATH("enemy_death_1", "enemy_death_2", "enemy_death_3"),
 		ATTACK_FIST,
+		SCORPION_ATTACK,
+		SCORPION_AWAKE("scorpion_awake_1", "scorpion_awake_2"),
+		SCORPION_PAIN,
+		SCORPION_DEATH("scorpion_death_1", "scorpion_death_2"),
+		SCORPION_ROAM,
+		LIGHT_STEP("light_step_1", "light_step_2", "light_step_3"),
 		ATTACK_COLT,
-		ATTACK_HAMMER,
 		ATTACK_KNIFE,
 		PICKUP,
 		PLAYER_PAIN,
@@ -279,7 +282,7 @@ public final class Assets {
 		private final boolean loop;
 		private final String[] files;
 
-		Sounds() {
+		Sounds( ) {
 			this(true);
 		}
 
@@ -304,17 +307,17 @@ public final class Assets {
 		}
 
 		@Override
-		public String[] getFilesList() {
+		public String[] getFilesList( ) {
 			return files;
 		}
 
 		@Override
-		public AssetLoaderParameters<Sound> getParameters() {
+		public AssetLoaderParameters<Sound> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<Sound> getTypeClass() {
+		public Class<Sound> getTypeClass( ) {
 			return Sound.class;
 		}
 	}
@@ -342,7 +345,7 @@ public final class Assets {
 		private final float alpha;
 		private Color skipColor;
 
-		Models() {
+		Models( ) {
 			this(1.0f);
 		}
 
@@ -357,12 +360,12 @@ public final class Assets {
 		}
 
 		@Override
-		public AssetLoaderParameters<Model> getParameters() {
+		public AssetLoaderParameters<Model> getParameters( ) {
 			return null;
 		}
 
 		@Override
-		public Class<Model> getTypeClass() {
+		public Class<Model> getTypeClass( ) {
 			return Model.class;
 		}
 	}
@@ -379,7 +382,7 @@ public final class Assets {
 			this.definitions = definitions;
 		}
 
-		public static TextureDefinition[] getAllDefinitionsInSingleArray() {
+		public static TextureDefinition[] getAllDefinitionsInSingleArray( ) {
 			ArrayList<TextureDefinition> list = new ArrayList<>();
 			Arrays.stream(values()).forEach(defs -> list.addAll(Arrays
 					.stream(defs.getDefinitions())
@@ -415,22 +418,22 @@ public final class Assets {
 			this.textureWrap = textureWrap;
 		}
 
-		SurfaceTextures() {
+		SurfaceTextures( ) {
 			this(Texture.TextureWrap.Repeat);
 		}
 
 		@Override
-		public String getSubFolderName() {
+		public String getSubFolderName( ) {
 			return "floors";
 		}
 
 		@Override
-		public String getName() {
+		public String getName( ) {
 			return name();
 		}
 
 		@Override
-		public AssetLoaderParameters<Texture> getParameters() {
+		public AssetLoaderParameters<Texture> getParameters( ) {
 			return null;
 		}
 	}
@@ -466,7 +469,7 @@ public final class Assets {
 		private final String specialFileName;
 		private final String subSubFolder;
 
-		UiTextures() {
+		UiTextures( ) {
 			this(null);
 		}
 
@@ -480,17 +483,17 @@ public final class Assets {
 		}
 
 		@Override
-		public String getSubFolderName() {
+		public String getSubFolderName( ) {
 			return subSubFolder != null ? SUB_FOLDER_NAME + PATH_SEPARATOR + subSubFolder : SUB_FOLDER_NAME;
 		}
 
 		@Override
-		public String getName() {
+		public String getName( ) {
 			return specialFileName != null ? specialFileName : name();
 		}
 
 		@Override
-		public AssetLoaderParameters<Texture> getParameters() {
+		public AssetLoaderParameters<Texture> getParameters( ) {
 			return null;
 		}
 	}

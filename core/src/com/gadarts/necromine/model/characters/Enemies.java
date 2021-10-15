@@ -8,21 +8,23 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import static com.gadarts.necromine.assets.Assets.Sounds.*;
 import static com.gadarts.necromine.model.characters.attributes.Agility.*;
 
 @Getter
 @RequiredArgsConstructor
 public enum Enemies implements CharacterDefinition {
 	SCORPION("Scorpion",
-			Assets.Sounds.ATTACK_FIST,
 			Atlases.SCORPION,
 			List.of(LOW, LOW, LOW, MED, MED),
 			List.of(Strength.of(1), Strength.of(1), Strength.of(1), Strength.of(1, 2), Strength.of(1, 2)),
 			List.of(1, 1, 2, 2, 2),
-			1, true, 0.1F),
+			1,
+			true,
+			0.1F,
+			SCORPION_AWAKE, SCORPION_ROAM, SCORPION_ATTACK, SCORPION_PAIN, SCORPION_DEATH, LIGHT_STEP),
 
 	ANUBIS("Anubis Zealot",
-			Assets.Sounds.ATTACK_FIST,
 			Atlases.ANUBIS,
 			List.of(LOW, MED, MED, HIGH, HIGH),
 			List.of(Strength.of(1), Strength.of(1), Strength.of(1), Strength.of(1, 2), Strength.of(1, 2)),
@@ -33,10 +35,10 @@ public enum Enemies implements CharacterDefinition {
 			EnemyWeaponsDefinitions.ENERGY_BALL,
 			4,
 			5,
-			false);
+			false,
+			ENEMY_AWAKE, ENEMY_ROAM, ATTACK_FIST, ENEMY_PAIN, ENEMY_DEATH, STEP);
 
 	private final String displayName;
-	private final Assets.Sounds attackSound;
 	private final Atlases atlasDefinition;
 	private final List<Agility> agility;
 	private final List<Strength> strength;
@@ -49,19 +51,29 @@ public enum Enemies implements CharacterDefinition {
 	private final int primaryAttackHitFrameIndex;
 	private final boolean singleDeathAnimation;
 	private final float height;
+	private final Assets.Sounds awakeSound;
+	private final Assets.Sounds roamSound;
+	private final Assets.Sounds attackSound;
+	private final Assets.Sounds painSound;
+	private final Assets.Sounds deathSound;
+	private final Assets.Sounds stepSound;
 
 	Enemies(final String displayName,
-			final Assets.Sounds attackSound,
 			final Atlases atlasDefinition,
 			final List<Agility> agility,
 			final List<Strength> strength,
 			final List<Integer> health,
 			final int meleeHitFrameIndex,
 			final boolean singleDeathAnimation,
-			final float height) {
+			final float height,
+			final Assets.Sounds awakeSound,
+			final Assets.Sounds roamSound,
+			final Assets.Sounds attackSound,
+			final Assets.Sounds painSound,
+			final Assets.Sounds deathSound,
+			final Assets.Sounds stepSound) {
 		this(
 				displayName,
-				attackSound,
 				atlasDefinition,
 				agility,
 				strength,
@@ -69,11 +81,16 @@ public enum Enemies implements CharacterDefinition {
 				null, null, null, null,
 				meleeHitFrameIndex, 0,
 				singleDeathAnimation,
-				height);
+				height,
+				awakeSound,
+				roamSound,
+				attackSound,
+				painSound,
+				deathSound,
+				stepSound);
 	}
 
 	Enemies(final String displayName,
-			final Assets.Sounds attackSound,
 			final Atlases atlasDefinition,
 			final List<Agility> agility,
 			final List<Strength> strength,
@@ -84,10 +101,15 @@ public enum Enemies implements CharacterDefinition {
 			final EnemyWeaponsDefinitions primaryAttack,
 			final int meleeHitFrameIndex,
 			final int primaryAttackHitFrameIndex,
-			final boolean singleDeathAnimation) {
+			final boolean singleDeathAnimation,
+			final Assets.Sounds awakeSound,
+			final Assets.Sounds roamSound,
+			final Assets.Sounds attackSound,
+			final Assets.Sounds painSound,
+			final Assets.Sounds deathSound,
+			final Assets.Sounds stepSound) {
 		this(
 				displayName,
-				attackSound,
 				atlasDefinition,
 				agility,
 				strength,
@@ -99,7 +121,8 @@ public enum Enemies implements CharacterDefinition {
 				meleeHitFrameIndex,
 				primaryAttackHitFrameIndex,
 				singleDeathAnimation,
-				1);
+				1F,
+				awakeSound, roamSound, attackSound, painSound, deathSound, stepSound);
 	}
 
 
