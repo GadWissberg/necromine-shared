@@ -1,7 +1,9 @@
-package com.gadarts.necromine.model.characters;
+package com.gadarts.necromine.model.characters.enemies;
 
 import com.gadarts.necromine.assets.Assets;
 import com.gadarts.necromine.assets.Assets.Atlases;
+import com.gadarts.necromine.model.characters.CharacterDefinition;
+import com.gadarts.necromine.model.characters.CharacterTypes;
 import com.gadarts.necromine.model.characters.attributes.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

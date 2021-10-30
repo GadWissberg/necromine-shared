@@ -1,4 +1,4 @@
-package com.gadarts.necromine.model;
+package com.gadarts.necromine.model.env;
 
 import com.badlogic.gdx.math.Vector3;
 import lombok.AccessLevel;

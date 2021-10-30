@@ -1,4 +1,4 @@
-package com.gadarts.necromine.model;
+package com.gadarts.necromine.model.map;
 
 import lombok.Getter;
 import lombok.Setter;

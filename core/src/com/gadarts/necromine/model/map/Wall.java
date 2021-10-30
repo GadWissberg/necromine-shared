@@ -1,4 +1,4 @@
-package com.gadarts.necromine.model;
+package com.gadarts.necromine.model.map;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.gadarts.necromine.assets.Assets;

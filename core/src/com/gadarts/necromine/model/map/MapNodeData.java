@@ -1,4 +1,4 @@
-package com.gadarts.necromine.model;
+package com.gadarts.necromine.model.map;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g3d.Material;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.math.Vector3;
 import com.gadarts.necromine.assets.Assets;
+import com.gadarts.necromine.model.Coords;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

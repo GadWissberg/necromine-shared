@@ -1,7 +1,9 @@
-package com.gadarts.necromine.model.characters;
+package com.gadarts.necromine.model.characters.player;
 
 
 import com.gadarts.necromine.assets.Assets;
+import com.gadarts.necromine.model.characters.CharacterDefinition;
+import com.gadarts.necromine.model.characters.CharacterTypes;
 
 public class PlayerDefinition implements CharacterDefinition {
 	@Override

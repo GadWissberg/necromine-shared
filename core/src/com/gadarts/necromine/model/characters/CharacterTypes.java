@@ -1,5 +1,8 @@
 package com.gadarts.necromine.model.characters;
 
+import com.gadarts.necromine.model.characters.enemies.Enemies;
+import com.gadarts.necromine.model.characters.player.NPCs;
+import com.gadarts.necromine.model.characters.player.PlayerDefinition;
 import lombok.Getter;
 
 @Getter

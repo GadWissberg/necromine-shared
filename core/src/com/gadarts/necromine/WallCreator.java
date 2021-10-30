@@ -12,8 +12,8 @@ import com.badlogic.gdx.utils.Disposable;
 import com.gadarts.necromine.assets.Assets.SurfaceTextures;
 import com.gadarts.necromine.assets.GameAssetsManager;
 import com.gadarts.necromine.model.Coords;
-import com.gadarts.necromine.model.MapNodeData;
-import com.gadarts.necromine.model.Wall;
+import com.gadarts.necromine.model.map.MapNodeData;
+import com.gadarts.necromine.model.map.Wall;
 import lombok.Getter;
 
 import java.util.Optional;

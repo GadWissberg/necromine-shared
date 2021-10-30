@@ -41,7 +41,7 @@ public final class Assets {
 		MODEL(Models.values()),
 		SHADER(Shaders.values()),
 		TEXTURE(TexturesTypes.getAllDefinitionsInSingleArray()),
-		PARTICLES(Particles.values()),
+		PARTICLES(ParticleEffects.values()),
 		FONT(Fonts.values());
 
 		private final AssetDefinition[] assetDefinitions;
@@ -160,14 +160,14 @@ public final class Assets {
 	 */
 
 	@Getter
-	public enum Particles implements ParticleDefinition {
-		BLOOD_SPLATTER;
+	public enum ParticleEffects implements ParticleDefinition {
+		BLOOD_SPLATTER, ENERGY_BALL_EXPLOSION, ENERGY_BALL_TRAIL;
 
 		private static final ParticleSystem particleSystem = new ParticleSystem();
 		private static final PointSpriteParticleBatch pointSpriteParticleBatch = new PointSpriteParticleBatch();
 		private final String filePath;
 
-		Particles( ) {
+		ParticleEffects( ) {
 			this.filePath = FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FORMAT;
 		}
 
@@ -261,6 +261,8 @@ public final class Assets {
 		ENEMY_PAIN("enemy_pain_1", "enemy_pain_2", "enemy_pain_3"),
 		ENEMY_DEATH("enemy_death_1", "enemy_death_2", "enemy_death_3"),
 		ATTACK_FIST,
+		ATTACK_ENERGY_BALL,
+		SMALL_EXP,
 		SCORPION_ATTACK,
 		SCORPION_AWAKE("scorpion_awake_1", "scorpion_awake_2"),
 		SCORPION_PAIN,

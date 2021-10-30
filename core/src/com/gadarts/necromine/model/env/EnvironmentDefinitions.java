@@ -1,9 +1,12 @@
-package com.gadarts.necromine.model;
+package com.gadarts.necromine.model.env;
 
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.math.Vector3;
 import com.gadarts.necromine.assets.Assets.Models;
+import com.gadarts.necromine.model.ModelElementDefinition;
+import com.gadarts.necromine.model.RelativeBillboard;
 import com.gadarts.necromine.model.characters.Direction;
+import com.gadarts.necromine.model.map.MapNodesTypes;
 import lombok.AccessLevel;
 import lombok.Getter;
 
