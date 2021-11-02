@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.Array;
 import com.gadarts.necromine.assets.definitions.*;
 import com.gadarts.necromine.model.pickups.WeaponsDefinitions;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +35,7 @@ public final class Assets {
 	}
 
 	@Getter
+	@RequiredArgsConstructor
 	public enum AssetsTypes {
 		ATLAS(Atlases.values()),
 		MELODY(Melody.values()),
@@ -41,13 +43,14 @@ public final class Assets {
 		MODEL(Models.values()),
 		SHADER(Shaders.values()),
 		TEXTURE(TexturesTypes.getAllDefinitionsInSingleArray()),
-		PARTICLES(ParticleEffects.values()),
+		PARTICLES(ParticleEffects.values(), true),
 		FONT(Fonts.values());
 
 		private final AssetDefinition[] assetDefinitions;
+		private final boolean manualLoad;
 
 		AssetsTypes(final AssetDefinition[] assetDefinitions) {
-			this.assetDefinitions = assetDefinitions;
+			this(assetDefinitions, false);
 		}
 
 	}
@@ -163,25 +166,15 @@ public final class Assets {
 	public enum ParticleEffects implements ParticleDefinition {
 		BLOOD_SPLATTER, ENERGY_BALL_EXPLOSION, ENERGY_BALL_TRAIL;
 
-		private static final ParticleSystem particleSystem = new ParticleSystem();
-		private static final PointSpriteParticleBatch pointSpriteParticleBatch = new PointSpriteParticleBatch();
 		private final String filePath;
 
 		ParticleEffects( ) {
 			this.filePath = FOLDER + PATH_SEPARATOR + name().toLowerCase() + "." + FORMAT;
 		}
 
-		public static PointSpriteParticleBatch getPointSpriteParticleBatch( ) {
-			return pointSpriteParticleBatch;
-		}
-
-		public static ParticleSystem getParticleSystem( ) {
-			return particleSystem;
-		}
-
 		@Override
-		public AssetLoaderParameters<ParticleEffect> getParameters( ) {
-			return new ParticleEffectLoader.ParticleEffectLoadParameter(Array.with(pointSpriteParticleBatch));
+		public AssetLoaderParameters getParameters( ) {
+			return null;
 		}
 
 		@Override
@@ -412,7 +405,22 @@ public final class Assets {
 		ANTIQUE_WALL_1_TALL_BLOOD_3,
 		ANTIQUE_WALL_1_TALL_GLYPH_1,
 		ANTIQUE_WALL_1_TALL_GLYPH_2,
-		ANTIQUE_WALL_1_TALL_GLYPH_3;
+		ANTIQUE_WALL_1_TALL_GLYPH_3,
+		SANDSTONE_BRICK_1,
+		SANDSTONE_BRICK_2,
+		SANDSTONE_BRICK_3,
+		SANDSTONE_BRICK_4,
+		SANDSTONE_BRICK_5,
+		SANDSTONE_BRICK_6,
+		SANDSTONE_BRICK_BLOOD_1,
+		SANDSTONE_BRICK_BLOOD_2,
+		SANDSTONE_BRICK_BLOOD_3,
+		SANDSTONE_BRICK_GLYPH_1,
+		SANDSTONE_BRICK_GLYPH_2,
+		SANDSTONE_BRICK_GLYPH_3,
+		SANDSTONE_BRICK_GLYPH_4,
+		SANDSTONE_BRICK_GLYPH_5,
+		;
 
 		private final Texture.TextureWrap textureWrap;
 
@@ -426,7 +434,7 @@ public final class Assets {
 
 		@Override
 		public String getSubFolderName( ) {
-			return "floors";
+			return "surfaces";
 		}
 
 		@Override

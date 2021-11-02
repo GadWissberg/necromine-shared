@@ -2,6 +2,7 @@ package com.gadarts.necromine.assets;
 
 import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
@@ -17,6 +18,8 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.particles.ParticleEffect;
+import com.badlogic.gdx.graphics.g3d.particles.ParticleEffectLoader;
+import com.badlogic.gdx.graphics.g3d.particles.batches.ParticleBatch;
 import com.badlogic.gdx.utils.Array;
 import com.gadarts.necromine.assets.definitions.AtlasDefinition;
 import com.gadarts.necromine.assets.definitions.FontDefinition;
@@ -44,6 +47,14 @@ public class GameAssetsManager extends AssetManager {
 		setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
 		FreetypeFontLoader loader = new FreetypeFontLoader(resolver);
 		setLoader(BitmapFont.class, FontDefinition.FORMAT, loader);
+	}
+
+	public void loadParticleEffects(ParticleBatch<?> pointSpriteParticleBatch) {
+		Arrays.stream(Assets.AssetsTypes.PARTICLES.getAssetDefinitions())
+				.forEach(def -> loadFileWithManualParameters(
+						def,
+						def.getFilePath(),
+						new ParticleEffectLoader.ParticleEffectLoadParameter(Array.with(pointSpriteParticleBatch))));
 	}
 
 	/**
@@ -77,6 +88,16 @@ public class GameAssetsManager extends AssetManager {
 		} else {
 			load(path, typeClass);
 		}
+	}
+
+	private void loadFileWithManualParameters(com.gadarts.necromine.assets.definitions.AssetDefinition def,
+											  String fileName,
+											  AssetLoaderParameters parameters) {
+		String filePath = assetsLocation + fileName;
+		String path = Gdx.files.getFileHandle(filePath, FileType.Internal).path();
+		Class<?> typeClass = def.getTypeClass();
+		String assetManagerKey = def.getAssetManagerKey();
+		load(assetManagerKey != null ? assetManagerKey : path, typeClass, parameters);
 	}
 
 	/**
