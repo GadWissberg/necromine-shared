@@ -55,6 +55,7 @@ public class GameAssetsManager extends AssetManager {
 						def,
 						def.getFilePath(),
 						new ParticleEffectLoader.ParticleEffectLoadParameter(Array.with(pointSpriteParticleBatch))));
+		finishLoading();
 	}
 
 	/**
@@ -63,6 +64,7 @@ public class GameAssetsManager extends AssetManager {
 	public void loadGameFiles(final Assets.AssetsTypes... assetsTypesToExclude) {
 		Arrays.stream(Assets.AssetsTypes.values())
 				.filter(type -> Arrays.stream(assetsTypesToExclude).noneMatch(toExclude -> toExclude == type))
+				.filter(type -> !type.isManualLoad())
 				.forEach(type -> Arrays.stream(type.getAssetDefinitions()).forEach(def -> {
 					String[] filesList = def.getFilesList();
 					if (filesList.length == 0) {
