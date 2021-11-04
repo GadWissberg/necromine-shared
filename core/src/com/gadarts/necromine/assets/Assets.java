@@ -420,6 +420,7 @@ public final class Assets {
 		SANDSTONE_BRICK_GLYPH_3,
 		SANDSTONE_BRICK_GLYPH_4,
 		SANDSTONE_BRICK_GLYPH_5,
+		BLANK,
 		;
 
 		private final Texture.TextureWrap textureWrap;
