@@ -14,7 +14,6 @@ public class Coords {
 	@Setter(AccessLevel.NONE)
 	private final int col;
 
-
 	public boolean equals(int row, int col) {
 		return this.row == row && this.col == col;
 	}

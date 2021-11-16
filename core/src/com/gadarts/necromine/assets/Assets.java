@@ -467,6 +467,7 @@ public final class Assets {
 		WEAPON_COLT(null, "weapons"),
 		PLAYER_LAYOUT,
 		SKILL_FLOWER_CENTER(null, "skill_flower"),
+		SKILL_FLOWER_CENTER_IDLE(null, "skill_flower"),
 		SKILL_FLOWER_1(null, "skill_flower"),
 		SKILL_FLOWER_2(null, "skill_flower"),
 		SKILL_FLOWER_3(null, "skill_flower"),
@@ -474,7 +475,8 @@ public final class Assets {
 		SKILL_FLOWER_5(null, "skill_flower"),
 		SKILL_FLOWER_6(null, "skill_flower"),
 		SKILL_FLOWER_7(null, "skill_flower"),
-		SKILL_FLOWER_8(null, "skill_flower");
+		SKILL_FLOWER_8(null, "skill_flower"),
+		ICON_LOOKING_FOR(null, "skill_flower");
 
 		public static final String SUB_FOLDER_NAME = "ui";
 		private final String specialFileName;
