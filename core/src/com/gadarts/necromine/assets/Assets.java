@@ -476,7 +476,8 @@ public final class Assets {
 		SKILL_FLOWER_6(null, "skill_flower"),
 		SKILL_FLOWER_7(null, "skill_flower"),
 		SKILL_FLOWER_8(null, "skill_flower"),
-		ICON_LOOKING_FOR(null, "skill_flower");
+		ICON_LOOKING_FOR(null, "skill_flower"),
+		ICON_SPOTTED(null, "skill_flower");
 
 		public static final String SUB_FOLDER_NAME = "ui";
 		private final String specialFileName;
