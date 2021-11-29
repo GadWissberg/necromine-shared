@@ -12,7 +12,7 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	KNIFE(1, 2, 4, Assets.UiTextures.WEAPON_KNIFE, Assets.Sounds.ATTACK_KNIFE, new int[]{
 			1,
 			1,
-	}, true, "Knife"),
+	}, true, "Knife", false),
 	COLT(2, 2, 2, Assets.UiTextures.WEAPON_COLT, Assets.Sounds.ATTACK_COLT, new int[]{
 			1, 1,
 			1, 0
@@ -37,6 +37,7 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	private final Assets.Models modelDef;
 	private final boolean hitScan;
 	private final int damage;
+	private final boolean noisy;
 
 	WeaponsDefinitions(final int width,
 					   final int height,
@@ -45,8 +46,20 @@ public enum WeaponsDefinitions implements ItemDefinition {
 					   final Assets.Sounds attackSound,
 					   final int[] mask,
 					   final boolean melee,
-					   final String displayName) {
-		this(width, height, hitFrameIndex, image, attackSound, mask, melee, displayName, null, false, 0);
+					   final String displayName,
+					   final boolean noisy) {
+		this(width,
+				height,
+				hitFrameIndex,
+				image,
+				attackSound,
+				mask,
+				melee,
+				displayName,
+				null,
+				false,
+				0,
+				noisy);
 	}
 
 	WeaponsDefinitions(final int width,
@@ -59,7 +72,18 @@ public enum WeaponsDefinitions implements ItemDefinition {
 					   final Assets.Models model,
 					   final boolean hitScan,
 					   final int damage) {
-		this(width, height, hitFrameIndex, image, attackSound, mask, false, displayName, model, hitScan, damage);
+		this(width,
+				height,
+				hitFrameIndex,
+				image,
+				attackSound,
+				mask,
+				false,
+				displayName,
+				model,
+				hitScan,
+				damage,
+				true);
 	}
 
 	WeaponsDefinitions(final int width,
@@ -72,7 +96,8 @@ public enum WeaponsDefinitions implements ItemDefinition {
 					   final String displayName,
 					   final Assets.Models model,
 					   final boolean hitScan,
-					   final int damage) {
+					   final int damage,
+					   final boolean noisy) {
 		this.width = width;
 		this.height = height;
 		this.hitFrameIndex = hitFrameIndex;
@@ -84,6 +109,7 @@ public enum WeaponsDefinitions implements ItemDefinition {
 		this.modelDef = model;
 		this.hitScan = hitScan;
 		this.damage = damage;
+		this.noisy = noisy;
 	}
 
 	private int[] flipMatrixVertically(final int[] mask) {
