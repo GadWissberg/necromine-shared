@@ -332,7 +332,7 @@ public final class Assets {
 		CAVE_SUPPORTER_2(),
 		CAVE_SUPPORTER_3(),
 		CURSOR(0.1F),
-		FIRE_HYDRANT,
+		TORCH,
 		SIGN,
 		CAVE_WALL_SINGLE;
 
