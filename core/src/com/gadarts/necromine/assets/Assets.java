@@ -139,7 +139,11 @@ public final class Assets {
 		VERTEX,
 		FRAGMENT,
 		DECAL_VERTEX,
-		DECAL_FRAGMENT;
+		DECAL_FRAGMENT,
+		DEPTHMAP_VERTEX,
+		DEPTHMAP_FRAGMENT,
+		SHADOW_VERTEX,
+		SHADOW_FRAGMENT;
 
 		private final String filePath;
 
