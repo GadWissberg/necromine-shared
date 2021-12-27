@@ -132,17 +132,21 @@ public class WallCreator implements Disposable {
 
 	public static void adjustWallBetweenNorthAndSouth(final MapNodeData southernN,
 													  final MapNodeData northernN) {
-		adjustWallBetweenNorthAndSouth(southernN, northernN, 0);
+		adjustWallBetweenNorthAndSouth(southernN, northernN, 0, 0, 0);
 	}
 
 	public static void adjustWallBetweenNorthAndSouth(final MapNodeData southernN,
 													  final MapNodeData northernN,
-													  final float vScale) {
+													  final float vScale,
+													  final float hOffset,
+													  final float vOffset) {
 		Wall wallBetween = Optional.ofNullable(southernN.getWalls().getNorthWall()).orElse(northernN.getWalls().getSouthWall());
 		ModelInstance modelInstance = wallBetween.getModelInstance();
 		TextureAttribute textureAtt = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
 		textureAtt.scaleV = adjustWallBetweenTwoNodes(southernN, northernN, wallBetween);
 		textureAtt.scaleV = vScale != 0 ? vScale : textureAtt.scaleV;
+		textureAtt.offsetU = hOffset;
+		textureAtt.offsetV = vOffset;
 		float degrees = (southernN.getHeight() > northernN.getHeight() ? -1 : 1) * 90F;
 		if (southernN.getHeight() > northernN.getHeight()) {
 			textureAtt.scaleV *= -1;
@@ -152,20 +156,22 @@ public class WallCreator implements Disposable {
 	}
 
 	public static void adjustWallBetweenEastAndWest(final MapNodeData eastNode,
-													final MapNodeData westNode,
-													final boolean hasJustBeenCreated) {
-		adjustWallBetweenEastAndWest(eastNode, westNode, hasJustBeenCreated, 0);
+													final MapNodeData westNode) {
+		adjustWallBetweenEastAndWest(eastNode, westNode, 0, 0, 0);
 	}
 
 	public static void adjustWallBetweenEastAndWest(final MapNodeData eastNode,
 													final MapNodeData westNode,
-													final boolean hasJustBeenCreated,
-													final float vScale) {
+													final float vScale,
+													final float hOffset,
+													final float vOffset) {
 		Wall wallBetween = Optional.ofNullable(eastNode.getWalls().getWestWall()).orElse(westNode.getWalls().getEastWall());
 		ModelInstance modelInstance = wallBetween.getModelInstance();
 		TextureAttribute textureAtt = (TextureAttribute) modelInstance.materials.get(0).get(TextureAttribute.Diffuse);
 		textureAtt.scaleV = adjustWallBetweenTwoNodes(eastNode, westNode, wallBetween);
 		textureAtt.scaleV = vScale != 0 ? vScale : textureAtt.scaleV;
+		textureAtt.offsetU = hOffset;
+		textureAtt.offsetV = vOffset;
 		boolean eastHigherThanWest = eastNode.getHeight() > westNode.getHeight();
 		modelInstance.transform.getTranslation(auxVector3_1).z = eastNode.getCoords().getRow();
 		modelInstance.transform.getScale(auxVector3_2);
@@ -222,7 +228,7 @@ public class WallCreator implements Disposable {
 			if (southernNode.getWalls().getNorthWall() == null && northernNode.getWalls().getSouthWall() == null) {
 				northernNode.getWalls().setSouthWall(createSouthWall(northernNode, wallModel, assetsManager, MISSING));
 			}
-			adjustWallBetweenNorthAndSouth(southernNode, northernNode, 0);
+			adjustWallBetweenNorthAndSouth(southernNode, northernNode, 0, 0, 0);
 		} else {
 			clearWallBetweenNorthAndSouthNodes(northernNode, southernNode);
 		}
@@ -231,12 +237,10 @@ public class WallCreator implements Disposable {
 	public void adjustEastWall(final MapNodeData westernNode,
 							   final MapNodeData easternNode) {
 		if (easternNode.getHeight() != westernNode.getHeight()) {
-			boolean hasJustBeenCreated = false;
 			if (westernNode.getWalls().getEastWall() == null && easternNode.getWalls().getWestWall() == null) {
 				westernNode.getWalls().setEastWall(createEastWall(westernNode, wallModel, assetsManager, MISSING));
-				hasJustBeenCreated = true;
 			}
-			adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
+			adjustWallBetweenEastAndWest(easternNode, westernNode, 0, 0, 0);
 		} else {
 			clearWallBetweenWestAndEastNodes(westernNode, easternNode);
 		}
@@ -254,12 +258,10 @@ public class WallCreator implements Disposable {
 
 	public void adjustWestWall(final MapNodeData easternNode, final MapNodeData westernNode) {
 		if (easternNode.getHeight() != westernNode.getHeight()) {
-			boolean hasJustBeenCreated = false;
 			if (westernNode.getWalls().getEastWall() == null && easternNode.getWalls().getWestWall() == null) {
 				easternNode.getWalls().setWestWall(createWestWall(easternNode, wallModel, assetsManager, MISSING));
-				hasJustBeenCreated = true;
 			}
-			adjustWallBetweenEastAndWest(easternNode, westernNode, hasJustBeenCreated, 0);
+			adjustWallBetweenEastAndWest(easternNode, westernNode, 0, 0, 0);
 		} else {
 			clearWallBetweenWestAndEastNodes(westernNode, easternNode);
 		}
