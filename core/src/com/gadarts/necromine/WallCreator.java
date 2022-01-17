@@ -130,11 +130,25 @@ public class WallCreator implements Disposable {
 		return new Wall(modelInstance, definition);
 	}
 
+	/**
+	 * Adjusts the wall's attributes between a northern and southern node.
+	 *
+	 * @param southernN
+	 * @param northernN
+	 */
+	@SuppressWarnings("JavaDoc")
 	public static void adjustWallBetweenNorthAndSouth(final MapNodeData southernN,
 													  final MapNodeData northernN) {
 		adjustWallBetweenNorthAndSouth(southernN, northernN, 0, 0, 0);
 	}
 
+	/**
+	 * Adjusts the wall's attributes between a northern and southern node.
+	 *
+	 * @param southernN
+	 * @param northernN
+	 */
+	@SuppressWarnings("JavaDoc")
 	public static void adjustWallBetweenNorthAndSouth(final MapNodeData southernN,
 													  final MapNodeData northernN,
 													  final float vScale,
@@ -147,19 +161,34 @@ public class WallCreator implements Disposable {
 		textureAtt.scaleV = vScale != 0 ? vScale : textureAtt.scaleV;
 		textureAtt.offsetU = hOffset;
 		textureAtt.offsetV = vOffset;
-		float degrees = (southernN.getHeight() > northernN.getHeight() ? -1 : 1) * 90F;
 		if (southernN.getHeight() > northernN.getHeight()) {
 			textureAtt.scaleV *= -1;
 			textureAtt.scaleU *= -1;
 		}
-		modelInstance.transform.rotate(Vector3.X, degrees);
+		modelInstance.transform.rotate(Vector3.X, (southernN.getHeight() > northernN.getHeight() ? -1 : 1) * 90F);
 	}
 
+	/**
+	 * Adjusts the wall's attributes between a eastern and western node.
+	 *
+	 * @param eastNode
+	 * @param westNode
+	 */
 	public static void adjustWallBetweenEastAndWest(final MapNodeData eastNode,
 													final MapNodeData westNode) {
 		adjustWallBetweenEastAndWest(eastNode, westNode, 0, 0, 0);
 	}
 
+	/**
+	 * Adjusts the wall's attributes between a eastern and western node.
+	 *
+	 * @param eastNode
+	 * @param westNode
+	 * @param vScale
+	 * @param hOffset
+	 * @param vOffset
+	 */
+	@SuppressWarnings("JavaDoc")
 	public static void adjustWallBetweenEastAndWest(final MapNodeData eastNode,
 													final MapNodeData westNode,
 													final float vScale,
@@ -185,9 +214,9 @@ public class WallCreator implements Disposable {
 		}
 	}
 
-	public static float adjustWallBetweenTwoNodes(final MapNodeData eastOrSouthNode,
-												  final MapNodeData westOrNorthNode,
-												  final Wall wallBetween) {
+	private static float adjustWallBetweenTwoNodes(final MapNodeData eastOrSouthNode,
+												   final MapNodeData westOrNorthNode,
+												   final Wall wallBetween) {
 		Vector3 wallBetweenThemPos = wallBetween.getModelInstance().transform.getTranslation(auxVector3_1);
 		float eastOrSouthHeight = eastOrSouthNode.getHeight();
 		float westOrNorthHeight = westOrNorthNode.getHeight();
@@ -210,6 +239,13 @@ public class WallCreator implements Disposable {
 				Usage.Position | Usage.Normal | Usage.TextureCoordinates);
 	}
 
+	/**
+	 * Creates a wall between the two nodes if missing and adjusts it.
+	 *
+	 * @param southernNode
+	 * @param northernNode
+	 */
+	@SuppressWarnings("JavaDoc")
 	public void adjustNorthWall(final MapNodeData southernNode,
 								final MapNodeData northernNode) {
 		if (northernNode.getHeight() != southernNode.getHeight()) {
@@ -222,6 +258,13 @@ public class WallCreator implements Disposable {
 		}
 	}
 
+	/**
+	 * Creates a wall between the two nodes if missing and adjusts it.
+	 *
+	 * @param northernNode
+	 * @param southernNode
+	 */
+	@SuppressWarnings("JavaDoc")
 	public void adjustSouthWall(final MapNodeData northernNode,
 								final MapNodeData southernNode) {
 		if (northernNode.getHeight() != southernNode.getHeight()) {
@@ -234,6 +277,13 @@ public class WallCreator implements Disposable {
 		}
 	}
 
+	/**
+	 * Creates a wall between the two nodes if missing and adjusts it.
+	 *
+	 * @param westernNode
+	 * @param easternNode
+	 */
+	@SuppressWarnings("JavaDoc")
 	public void adjustEastWall(final MapNodeData westernNode,
 							   final MapNodeData easternNode) {
 		if (easternNode.getHeight() != westernNode.getHeight()) {
@@ -256,6 +306,13 @@ public class WallCreator implements Disposable {
 		northernNode.getWalls().setSouthWall(null);
 	}
 
+	/**
+	 * Creates a wall between the two nodes if missing and adjusts it.
+	 *
+	 * @param easternNode
+	 * @param westernNode
+	 */
+	@SuppressWarnings("JavaDoc")
 	public void adjustWestWall(final MapNodeData easternNode, final MapNodeData westernNode) {
 		if (easternNode.getHeight() != westernNode.getHeight()) {
 			if (westernNode.getWalls().getEastWall() == null && easternNode.getWalls().getWestWall() == null) {

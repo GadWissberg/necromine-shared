@@ -155,4 +155,10 @@ public class GameAssetsManager extends AssetManager {
 	public String getShader(final Assets.Shaders shaders) {
 		return get(assetsLocation + shaders.getFilePath(), String.class);
 	}
+
+	public BitmapFont getFont(final Assets.Fonts font) {
+		int size = font.getParams().fontParameters.size;
+		String fileName = assetsLocation + font.getFilename() + "_" + size + "." + FontDefinition.FORMAT;
+		return get(fileName, BitmapFont.class);
+	}
 }
