@@ -270,7 +270,10 @@ public final class Assets {
 		UI_CLICK(false),
 		UI_ITEM_SELECT(false),
 		UI_ITEM_PLACED(false),
-		AMB_WIND(false, true);
+		AMB_WIND(false, true),
+		AMB_CHAINS(true, false, "amb_chains_1", "amb_chains_2", "amb_chains_3"),
+		AMB_LAUGH(true, false, "amb_laugh_1"),
+		AMB_SIGH(true, false, "amb_sigh_1", "amb_sigh_2");
 
 		private final String filePath;
 		private final boolean randomPitch;
