@@ -4,15 +4,14 @@ import com.gadarts.necromine.assets.Assets;
 import com.gadarts.necromine.model.ModelElementDefinition;
 
 public interface ItemDefinition extends ModelElementDefinition {
-	int getWidth();
+	int getWidth( );
 
-	int[] getMask();
+	int[] getMask( );
 
-	int getHeight();
+	int getHeight( );
 
-	int getId();
+	int getId( );
 
-	Assets.UiTextures getImage();
+	Assets.UiTextures getImage( );
 
-	String getDisplayName();
 }

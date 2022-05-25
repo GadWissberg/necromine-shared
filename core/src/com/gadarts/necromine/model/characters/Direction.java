@@ -22,7 +22,7 @@ public enum Direction {
 	private final int mask;
 
 	Direction(final int x, final int z, int mask) {
-		directionVector = new Vector2(x, z).nor();
+		directionVector = new Vector2(x, z);
 		float angleDeg = directionVector.angleDeg();
 		Vector2 auxVector = new Vector2();
 		bottomBound = auxVector.set(1, 0).setAngleDeg(angleDeg - DIR_ANGLE_SIZE / 2).angleDeg();

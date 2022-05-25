@@ -1,5 +1,4 @@
 *.lock
-*.properties
 *.bin
 *.jar
 /.idea
@@ -7,3 +6,6 @@
 /gradlew.bat
 *.class
 /core/build/
+/.gradle/
+*.log
+*.MF

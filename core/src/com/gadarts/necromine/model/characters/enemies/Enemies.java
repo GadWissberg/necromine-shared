@@ -138,6 +138,7 @@ public enum Enemies implements CharacterDefinition {
 		return displayName;
 	}
 
+
 	@Override
 	public CharacterTypes getCharacterType( ) {
 		return CharacterTypes.ENEMY;

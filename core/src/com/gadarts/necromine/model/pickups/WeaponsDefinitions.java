@@ -9,14 +9,30 @@ import lombok.Getter;
  */
 @Getter
 public enum WeaponsDefinitions implements ItemDefinition {
-	KNIFE(1, 2, 4, Assets.UiTextures.WEAPON_KNIFE, Assets.Sounds.ATTACK_KNIFE, new int[]{
-			1,
-			1,
-	}, true, "Knife", false),
-	COLT(2, 2, 2, Assets.UiTextures.WEAPON_COLT, Assets.Sounds.ATTACK_COLT, new int[]{
-			1, 1,
-			1, 0
-	}, "Colt M1911", Assets.Models.COLT, true, 1);
+	KNIFE(1, 2,
+			4,
+			Assets.UiTextures.WEAPON_KNIFE,
+			Assets.Sounds.ATTACK_KNIFE,
+			new int[]{
+					1,
+					1,
+			},
+			true,
+			"Knife",
+			false,
+			false),
+	COLT(2, 2,
+			2,
+			Assets.UiTextures.WEAPON_COLT,
+			Assets.Sounds.ATTACK_COLT,
+			new int[]{
+					1, 1,
+					1, 0
+			},
+			"Colt M1911",
+			Assets.Models.COLT,
+			true,
+			1);
 
 	@Getter(AccessLevel.NONE)
 	private final int width;
@@ -38,16 +54,18 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	private final boolean hitScan;
 	private final int damage;
 	private final boolean noisy;
+	private final boolean canBeSeenOnTheMap;
 
-	WeaponsDefinitions(final int width,
-					   final int height,
-					   final int hitFrameIndex,
-					   final Assets.UiTextures image,
-					   final Assets.Sounds attackSound,
-					   final int[] mask,
-					   final boolean melee,
-					   final String displayName,
-					   final boolean noisy) {
+	WeaponsDefinitions(int width,
+					   int height,
+					   int hitFrameIndex,
+					   Assets.UiTextures image,
+					   Assets.Sounds attackSound,
+					   int[] mask,
+					   boolean melee,
+					   String displayName,
+					   boolean noisy,
+					   boolean canBeSeenOnTheMap) {
 		this(width,
 				height,
 				hitFrameIndex,
@@ -59,7 +77,8 @@ public enum WeaponsDefinitions implements ItemDefinition {
 				null,
 				false,
 				0,
-				noisy);
+				noisy,
+				canBeSeenOnTheMap);
 	}
 
 	WeaponsDefinitions(final int width,
@@ -83,6 +102,7 @@ public enum WeaponsDefinitions implements ItemDefinition {
 				model,
 				hitScan,
 				damage,
+				true,
 				true);
 	}
 
@@ -97,7 +117,8 @@ public enum WeaponsDefinitions implements ItemDefinition {
 					   final Assets.Models model,
 					   final boolean hitScan,
 					   final int damage,
-					   final boolean noisy) {
+					   final boolean noisy,
+					   final boolean canBeSeenOnTheMap) {
 		this.width = width;
 		this.height = height;
 		this.hitFrameIndex = hitFrameIndex;
@@ -110,6 +131,7 @@ public enum WeaponsDefinitions implements ItemDefinition {
 		this.hitScan = hitScan;
 		this.damage = damage;
 		this.noisy = noisy;
+		this.canBeSeenOnTheMap = canBeSeenOnTheMap;
 	}
 
 	private int[] flipMatrixVertically(final int[] mask) {
@@ -151,6 +173,12 @@ public enum WeaponsDefinitions implements ItemDefinition {
 	@Override
 	public String getDisplayName( ) {
 		return displayName;
+	}
+
+
+	@Override
+	public boolean isCanBeSeenOnTheMap( ) {
+		return canBeSeenOnTheMap;
 	}
 
 	@Override

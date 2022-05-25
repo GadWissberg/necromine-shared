@@ -1,6 +1,7 @@
 buildscript {
 
     apply plugin: 'maven-publish'
+    apply plugin: "java-library"
 
     repositories {
         mavenLocal()
@@ -17,12 +18,13 @@ buildscript {
 
 allprojects {
     apply plugin: 'maven-publish'
+    apply plugin: "java-library"
 
     group = "com.gadarts.necromine.shared"
     version = '0.1'
     ext {
         versionNumber = 1
-        appName = "necromine"
+        appName = "necronemes-shared"
         gdxVersion = '1.11.0'
         ashleyVersion = '1.7.0'
         aiVersion = '1.8.0'
@@ -35,7 +37,7 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         google()
     }
-    
+
 }
 
 project(":core") {
@@ -49,5 +51,17 @@ project(":core") {
         compileOnly 'org.projectlombok:lombok:1.18.22'
         annotationProcessor 'org.projectlombok:lombok:1.18.22'
         implementation group: 'com.badlogicgames.gdx', name: 'gdx-ai', version: '1.8.1'
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'com.gadarts.necronemes'
+                artifactId = 'shared'
+                version = '0.1'
+
+                from components.java
+            }
+        }
     }
 }

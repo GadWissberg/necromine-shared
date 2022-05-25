@@ -1,9 +1,13 @@
 package com.gadarts.necromine.model;
 
 public interface ElementDefinition {
-	String getDisplayName();
+	String getDisplayName( );
 
-	String name();
+	String name( );
 
-	int ordinal();
+	default boolean isCanBeSeenOnTheMap( ) {
+		return true;
+	}
+
+	int ordinal( );
 }
